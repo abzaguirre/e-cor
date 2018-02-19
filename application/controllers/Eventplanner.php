@@ -102,12 +102,33 @@ class Eventplanner extends CI_Controller {
         redirect(base_url()."eventplanner/package_edit");
     }
     
-    public function add_item(){
-        $this->form_validation->set_rules("item_name", "Item Name", "required|min_length[3]");
+    public function item_add(){
+        $this->form_validation->set_rules("item_name", "Item Name", "required");
+        $this->form_validation->set_rules("item_price", "Item Price", "required");
+        $this->form_validation->set_rules("item_desc", "Item Description", "required|numerical");
         if ($this->form_validation->run() == FALSE){
             //ERROR
+            print_r(validation_errors());
+            die;
         }else{
-            //SUCCESS
+            $package_id = $this->uri->segment(3);
+            $current_ep = $this->Eventplanner_model->get_ep(array("event_planner_id" => 1))[0];
+            $data = array(
+                "event_planner_id"  => $current_ep->event_planner_id,
+                "packages_id"       => $package_id,
+                "item_name"         => $this->input->post("item_name"),
+                "item_price"        => $this->input->post("item_price"),
+                "item_desc"         => $this->input->post("item_desc"),
+                "item_updated_at"   => time(),
+                "item_added_at"     => time()
+                
+            );
+            if($this->Item_model->add_item($data)){
+                $this->session->set_flashdata("show_flash_success", "Successfully added an item.");
+            }else{
+                $this->session->set_flashdata("show_flash_failed", "Something went wrong while adding an item.");
+            }
+            redirect(base_url()."eventplanner/package_edit");
         }
     }
     

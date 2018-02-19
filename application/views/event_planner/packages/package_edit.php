@@ -140,40 +140,42 @@ EDIT PACKAGE
     </div>
 </div>
 <div class="modal fade" id="add_item" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-success border-0 text-white">
-                <h5 class="modal-title text-white">Add Item</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body p-5">
-                <div class = "row">
-                    <div class = "col-md-6">
-                        <div class="form-group">
-                            <label for="item_name" class="form-control-label">Item Name</label>
-                            <input type = "text" name = "item_name" id="item_name" class="form-control" placeholder = "Item Name" value = "">
+    <form action = "<?= base_url() ?>eventplanner/item_add/<?= $package->packages_id?>" method = "POST">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-success border-0 text-white">
+                    <h5 class="modal-title text-white">Add Item</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body p-5">
+                    <div class = "row">
+                        <div class = "col-md-6">
+                            <div class="form-group">
+                                <label for="item_name" class="form-control-label">Item Name</label>
+                                <input type = "text" name = "item_name" id="item_name" class="form-control" placeholder = "Item Name" value = "">
+                            </div>
+                        </div>
+                        <div class = "col-md-6">
+                            <div class="form-group">
+                                <label for="item_price" class="form-control-label">Item Price</label>
+                                <input type = "text" name = "item_price" id="item_price" class="form-control" placeholder = "Item Price" value = "">
+                            </div>
                         </div>
                     </div>
-                    <div class = "col-md-6">
-                        <div class="form-group">
-                            <label for="item_price" class="form-control-label">Item Price</label>
-                            <input type = "text" name = "item_price" id="item_price" class="form-control" placeholder = "Item Price" value = "">
+                    <div class = "row">
+                        <div class = "col-md-12">
+                            <label for="item_desc">Item Description</label>
+                            <textarea name = "item_desc" id="item_desc" placeholder = "Item Description" class="form-control" rows="6"></textarea>
                         </div>
                     </div>
                 </div>
-                <div class = "row">
-                    <div class = "col-md-12">
-                        <label for="item_desc">Item Description</label>
-                        <textarea name = "item_desc" id="item_desc" placeholder = "Item Description" class="form-control" rows="6"></textarea>
-                    </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Add Item</button>                               
                 </div>
-            </div>
-            <div class="modal-footer border-0">
-                <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
-                <a href="<?= base_url() ?>eventplanner/item_add" class="btn btn-success">Add Item</a>                               
             </div>
         </div>
-    </div>
+    </form>
 </div>
