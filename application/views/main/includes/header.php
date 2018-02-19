@@ -8,27 +8,26 @@
         Document Title
         =============================================
         -->
-        <title>Titan | Multipurpose HTML5 Template</title>
+        <title><?= $title ?></title>
         <!--  
         Favicons
         =============================================
         -->
-        <link rel="apple-touch-icon" sizes="57x57" href="<?= base_url() ?>assets/main/images/favicons/apple-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="<?= base_url() ?>assets/main/images/favicons/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="<?= base_url() ?>assets/main/images/favicons/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="<?= base_url() ?>assets/main/images/favicons/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="<?= base_url() ?>assets/main/images/favicons/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="<?= base_url() ?>assets/main/images/favicons/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="<?= base_url() ?>assets/main/images/favicons/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="<?= base_url() ?>assets/main/images/favicons/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="<?= base_url() ?>assets/main/images/favicons/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192" href="<?= base_url() ?>assets/main/images/favicons/android-icon-192x192.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="<?= base_url() ?>assets/main/images/favicons/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="<?= base_url() ?>assets/main/images/favicons/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url() ?>assets/main/images/favicons/favicon-16x16.png">
+        <link rel="apple-touch-icon" sizes="57x57" href="<?= base_url() ?>images/favicons/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="<?= base_url() ?>images/favicons/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="<?= base_url() ?>images/favicons/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="<?= base_url() ?>images/favicons/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="<?= base_url() ?>images/favicons/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="<?= base_url() ?>images/favicons/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="<?= base_url() ?>images/favicons/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="<?= base_url() ?>images/favicons/apple-icon-152x152.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="<?= base_url() ?>images/favicons/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="<?= base_url() ?>images/favicons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="<?= base_url() ?>images/favicons/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url() ?>images/favicons/favicon-16x16.png">
         <link rel="manifest" href="/manifest.json">
         <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="msapplication-TileImage" content="<?= base_url() ?>assets/main/images/favicons/ms-icon-144x144.png">
+        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
         <!--  
         Stylesheets
@@ -53,3 +52,126 @@
         <link href="<?= base_url() ?>assets/main/css/style.css" rel="stylesheet">
         <link id="color-scheme" href="<?= base_url() ?>assets/main/css/colors/default.css" rel="stylesheet">
     </head>
+    <style>
+        .shadow{
+            text-shadow: 6px 4px 5px #800000;
+
+        }
+        .work-image{
+            height:250px;
+        }
+        @keyframes heartbeat
+        {
+            0%
+            {
+                transform: scale( .75);
+            }
+
+            20%
+            {
+                transform: scale( 1);
+            }
+
+            40%
+            {
+                transform: scale( .75);
+            }
+
+            60%
+            {
+                transform: scale( 1);
+            }
+            80% {
+                transform: scale( .75);
+            }
+
+            100%
+            {
+                transform: scale( .75);
+            }
+        }
+
+        #heart
+        {
+            position: relative;
+            width: 100px;
+            height: 90px;
+            animation: heartbeat 1s infinite;
+        }
+
+        #heart:before,
+        #heart:after
+        {
+            position: absolute;
+            content: "";
+            left: 50px;
+            top: 0;
+            width: 50px;
+            height: 80px;
+            background: red;
+            -moz-border-radius: 50px 50px 0 0;
+            border-radius: 50px 50px 0 0;
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            -webkit-transform-origin: 0 100%;
+            -moz-transform-origin: 0 100%;
+            -ms-transform-origin: 0 100%;
+            -o-transform-origin: 0 100%;
+            transform-origin: 0 100%;
+        }
+
+        #heart:after
+        {
+            left: 0;
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+            -webkit-transform-origin: 100% 100%;
+            -moz-transform-origin: 100% 100%;
+            -ms-transform-origin: 100% 100%;
+            -o-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+        }
+    </style>
+    <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
+        <main>
+            <div class="page-loader">
+                <div class="loader">Loading...</div>
+            </div>
+            <nav class="navbar navbar-custom navbar-fixed-top navbar-transparent" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#custom-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="#totop">E-COR</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="custom-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a href="#totop" >Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a class="section-scroll" href="#alt-features">Services</a>
+                            </li>
+                            <li class="dropdown">
+                                <a class="section-scroll" href="#gallery">Gallery</a>
+                            </li>
+                            <li class="dropdown">
+                                <a class="section-scroll" href="#about">About Us</a>
+                            </li>
+                            <li class="dropdown">
+                                <a class="section-scroll" href="#team">Team</a>
+                            </li>
+                            <li class="dropdown">
+                                <a class="section-scroll" href="#contact">Contact Us</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#">Login</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
