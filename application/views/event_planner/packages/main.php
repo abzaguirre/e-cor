@@ -43,46 +43,46 @@ PACKAGES
                                 </div>
                             </div>
                         </div>
-                    <div class="modal fade" id="edit_item_<?= $item->item_id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header bg-primary text-white">
-                                    <h5 class="modal-title">Edit Item</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
+                        <div class="modal fade" id="edit_item_<?= $item->item_id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-primary text-white">
+                                        <h5 class="modal-title">Edit Item</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
 
-                                <div class="modal-body">
-                                    <div class = "row">
-                                        <div class = "col-md-6">
-                                            <div class="form-group">
-                                                <label for="item_name" class="form-control-label">Item Name</label>
-                                                <input type = "text" name = "item_name" id="item_name" class="form-control" placeholder = "Item Name" value = "<?= set_value("item_name", $item->item_name)?>">
+                                    <div class="modal-body">
+                                        <div class = "row">
+                                            <div class = "col-md-6">
+                                                <div class="form-group">
+                                                    <label for="item_name" class="form-control-label">Item Name</label>
+                                                    <input type = "text" name = "item_name" id="item_name" class="form-control" placeholder = "Item Name" value = "<?= set_value("item_name", $item->item_name)?>">
+                                                </div>
+                                            </div>
+                                            <div class = "col-md-6">
+                                                <div class="form-group">
+                                                    <label for="item_price" class="form-control-label">Item Price</label>
+                                                    <input type = "text" name = "item_price" id="item_price" class="form-control" placeholder = "Item Price" value = "<?= set_value("item_price", $item->item_price)?>">
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class = "col-md-6">
-                                            <div class="form-group">
-                                                <label for="item_price" class="form-control-label">Item Price</label>
-                                                <input type = "text" name = "item_price" id="item_price" class="form-control" placeholder = "Item Price" value = "<?= set_value("item_price", $item->item_price)?>">
+                                        <div class = "row">
+                                            <div class = "col-md-12">
+                                                <label for="item_desc">Item Description</label>
+                                                <textarea name = "item_desc" id="item_desc" placeholder = "Item Description" class="form-control" rows="6"><?= set_value("item_desc", $item->item_desc)?></textarea>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class = "row">
-                                        <div class = "col-md-12">
-                                            <label for="item_desc">Item Description</label>
-                                            <textarea name = "item_desc" id="item_desc" placeholder = "Item Description" class="form-control" rows="6"><?= set_value("item_desc", $item->item_desc)?></textarea>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
-                                    <a href="<?= base_url() ?>eventplanner/item_edit/<?= $item->item_id ?>" class="btn btn-primary">Save changes</a>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                                        <a href="<?= base_url() ?>eventplanner/item_edit/<?= $item->item_id ?>" class="btn btn-primary">Save changes</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     <?php endforeach; ?>
                     <hr/>
                     <div class ="card-footer d-flex justify-content-between align-items-center pt-0">
@@ -102,8 +102,8 @@ PACKAGES
                         </div>
                         <div class="modal-body p-5">
                             <div class="card">
-                                <div class="card-header bg-light">
-                                    <?= $package->packages_name ?>
+                                <div class="card-header bg-dark text-white">
+                                    <i class = "fa fa-archive"></i> <?= $package->packages_name ?>
                                 </div>
                                 <!-- ITEM LISTS -->
                                 <?php foreach ($items as $item): ?>

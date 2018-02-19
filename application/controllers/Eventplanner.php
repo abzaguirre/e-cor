@@ -91,4 +91,24 @@ class Eventplanner extends CI_Controller {
         redirect(base_url()."transactions");
     }
     
+    public function item_delete(){
+        $item_id = $this->uri->segment(3);
+        if($this->Item_model->delete_item(array("item_id" => $item_id))){
+            //SUCCESS
+            $this->session->set_flashdata("show_flash_success", "Successfully deleted.");
+        }else{
+            $this->session->set_flashdata("show_flash_failed", "Something went wrong while deleting item.");
+        }
+        redirect(base_url()."eventplanner/package_edit");
+    }
+    
+    public function add_item(){
+        $this->form_validation->set_rules("item_name", "Item Name", "required|min_length[3]");
+        if ($this->form_validation->run() == FALSE){
+            //ERROR
+        }else{
+            //SUCCESS
+        }
+    }
+    
 }
