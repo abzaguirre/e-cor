@@ -137,6 +137,12 @@
             -o-transform-origin: 100% 100%;
             transform-origin: 100% 100%;
         }
+        .footer {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
         .bg-violet{
             background-color:#715ba7;
             border: 0;
@@ -150,32 +156,7 @@
             <nav class="navbar navbar-custom navbar-fixed-top bg-violet" role="navigation">
                 <div class="container">
                     <div class="navbar-header">
-                        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#custom-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="#totop">E-COR</a>
-                    </div>
-                    <div class="collapse navbar-collapse" id="custom-collapse">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="dropdown">
-                                <a href="#totop" >Home</a>
-                            </li>
-                            <li class="dropdown">
-                                <a class="section-scroll" href="#alt-features">Services</a>
-                            </li>
-                            <li class="dropdown">
-                                <a class="section-scroll" href="#gallery">Gallery</a>
-                            </li>
-                            <li class="dropdown">
-                                <a class="section-scroll" href="#about">About Us</a>
-                            </li>
-                            <li class="dropdown">
-                                <a class="section-scroll" href="#team">Team</a>
-                            </li>
-                            <li class="dropdown">
-                                <a class="section-scroll" href="#contact">Contact Us</a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="<?= base_url() ?>login/">Login</a>
-                            </li>
-                        </ul>
+                        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#custom-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="<?= base_url() ?>main/">E-COR</a>
                     </div>
                 </div>
             </nav>
