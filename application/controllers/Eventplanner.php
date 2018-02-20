@@ -3,6 +3,21 @@
 class Eventplanner extends CI_Controller {
     function __construct() {
         parent::__construct();
+        if ($this->session->has_userdata('isloggedin') == FALSE) {
+            //user is not yet logged in
+            $this->session->set_flashdata("err_4", "Login First!");
+            redirect(base_url() . 'login/');
+        } else {
+            $current_user = $this->session->userdata("current_user");
+            if ($this->session->userdata("user_access") == "Client") {
+                //USER!
+                $this->session->set_flashdata("err_5", "You are currently logged in as " . $current_user->client_firstname . " " . $current_user->client_lastname);
+                redirect(base_url() . "Client");
+            } else if ($this->session->userdata("user_access") == "admin") {
+                //ADMIN!
+                //Do nothing!
+            }
+        }
     }
     
     public function index() {
@@ -35,7 +50,7 @@ class Eventplanner extends CI_Controller {
     public function packages(){
         $ep_id = $this->session->userdata("ep_id");
         
-        $packages = $this->Packages_model->get_packages_id(array("item.event_planner_id" => $ep_id));
+        $packages = $this->Packages_model->get_packages_id(array("event_planner_id" => $ep_id));
         
         $current_ep = $this->Eventplanner_model->get_ep(array("event_planner_id" => 1))[0];
         $data = array(
@@ -85,6 +100,57 @@ class Eventplanner extends CI_Controller {
         $this->load->view("event_planner/includes/footer");
     }
     
+    public function package_edit_name(){
+        $this->form_validation->set_rules("packages_name", "Package Name", "required");
+        if($this->form_validation->run() == FALSE){
+            
+        }else{
+            $package_id = $this->uri->segment(3);
+
+            $data = array(
+                "packages_name" => $this->input->post("packages_name"),
+                "packages_updated_at" => time()
+            );
+            
+            $this->Packages_model->package_edit($data, array("packages_id" => $package_id));
+            $this->session->set_flashdata("show_flash_success", "Successfully updated the package.");
+        }
+        redirect(base_url()."eventplanner/packages");
+    }
+    
+    public function package_delete(){
+        $package_id = $this->uri->segment(3);
+        $this->Packages_model->package_delete(array("packages_id" => $package_id));
+        $this->Packages_model->package_remove(array("packages_id" => $package_id));
+        $this->session->set_flashdata("show_flash_success", "Successfully removed the package.");
+        redirect(base_url()."eventplanner/packages");
+    }
+    
+    public function package_add(){
+        $this->form_validation->set_rules("package_name", "Package Name", "required");
+        if ($this->form_validation->run() == FALSE){
+            //ERROR
+            //print_r(validation_errors());
+            //die;
+            $this->session->set_flashdata("show_flash_failed", "Invalid value/s detected.");
+        }else{
+            $current_ep = $this->Eventplanner_model->get_ep(array("event_planner_id" => 1))[0];
+            $data = array(
+                "event_planner_id" => $current_ep->event_planner_id,
+                "packages_name" => $this->input->post("package_name"),
+                "packages_updated_at" => time(),
+                "packages_added_at" => time(),
+                
+            );
+            if($this->Packages_model->package_add($data)){
+                $this->session->set_flashdata("show_flash_success", "Successfully added package.");
+            }else{
+                $this->session->set_flashdata("show_flash_success", "Something went wrong while adding package.");
+            }
+        }
+        redirect(base_url()."eventplanner/packages");
+    }
+    
     public function transactions_exec(){
         $ep_id = $this->uri->segment(3);
         $this->session->set_userdata("ep_id", $ep_id);
@@ -108,8 +174,9 @@ class Eventplanner extends CI_Controller {
         $this->form_validation->set_rules("item_desc", "Item Description", "required");
         if ($this->form_validation->run() == FALSE){
             //ERROR
-            print_r(validation_errors());
-            die;
+            //print_r(validation_errors());
+            //die;
+            $this->session->set_flashdata("show_flash_failed", "Invalid values detected.");
         }else{
             $package_id = $this->uri->segment(3);
             $current_ep = $this->Eventplanner_model->get_ep(array("event_planner_id" => 1))[0];
@@ -138,10 +205,11 @@ class Eventplanner extends CI_Controller {
         $this->form_validation->set_rules("item_desc", "Item Description", "required");
         if($this->form_validation->run() == FALSE){
             //ERROR
-            echo "<pre>";
-            print_r(validation_errors());
-            echo "</pre>";
-            die;
+//            echo "<pre>";
+//            print_r(validation_errors());
+//            echo "</pre>";
+//            die;
+            $this->session->set_flashdata("show_flash_failed", "Invalid values detected.");
         }else{
             //SUCCESS
             $item_id = $this->uri->segment(3);
@@ -154,7 +222,6 @@ class Eventplanner extends CI_Controller {
             $this->Item_model->edit_item($data, array("item_id" => $item_id));
             $this->session->set_flashdata("show_flash_success", "Successfully updated an item");
         }
-        redirect(base_url()."eventplanner/packages");
     }
     
 }
