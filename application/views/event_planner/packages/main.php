@@ -2,6 +2,7 @@
 PACKAGES
 =============================-->
 <div class="content">
+    <?php include 'show_error.php'; ?>
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a class = "text-info" href="<?= base_url() ?>eventplanner/">Dashboard</a></li>
         <li class="breadcrumb-item active" aria-current="page">Packages</li>
@@ -37,50 +38,52 @@ PACKAGES
                             <div class="card-body border-0 d-flex justify-content-between align-items-center" style = "background:#ededed;">
                                 <i><?= $item->item_desc ?></i>
                                 <div class="text-muted">
-                                    <a href = "#" data-toggle = "modal" data-target = "#edit_item_<?= $item->item_id?>" title = "Edit Item" class="btn">
+                                    <a href = "#" data-toggle = "modal" data-target = "#edit_item_<?= $item->item_id ?>" title = "Edit Item" class="btn">
                                         <i class="fa fa-pencil"></i>
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        <div class="modal fade" id="edit_item_<?= $item->item_id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="edit_item_<?= $item->item_id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header bg-primary text-white">
-                                        <h5 class="modal-title">Edit Item</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
+                                <form action = "<?= base_url() ?>eventplanner/item_edit/<?= $item->item_id?>" method = "POST">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-primary text-white">
+                                            <h5 class="modal-title">Edit Item</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
 
-                                    <div class="modal-body">
-                                        <div class = "row">
-                                            <div class = "col-md-6">
-                                                <div class="form-group">
-                                                    <label for="item_name" class="form-control-label">Item Name</label>
-                                                    <input type = "text" name = "item_name" id="item_name" class="form-control" placeholder = "Item Name" value = "<?= set_value("item_name", $item->item_name)?>">
+                                        <div class="modal-body">
+                                            <div class = "row">
+                                                <div class = "col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="item_name" class="form-control-label">Item Name</label>
+                                                        <input type = "text" name = "item_name" id="item_name" class="form-control" placeholder = "Item Name" value = "<?= set_value("item_name", $item->item_name) ?>">
+                                                    </div>
+                                                </div>
+                                                <div class = "col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="item_price" class="form-control-label">Item Price</label>
+                                                        <input type = "text" name = "item_price" id="item_price" class="form-control" placeholder = "Item Price" value = "<?= set_value("item_price", $item->item_price) ?>">
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class = "col-md-6">
-                                                <div class="form-group">
-                                                    <label for="item_price" class="form-control-label">Item Price</label>
-                                                    <input type = "text" name = "item_price" id="item_price" class="form-control" placeholder = "Item Price" value = "<?= set_value("item_price", $item->item_price)?>">
+                                            <div class = "row">
+                                                <div class = "col-md-12">
+                                                    <label for="item_desc">Item Description</label>
+                                                    <textarea name = "item_desc" id="item_desc" placeholder = "Item Description" class="form-control" rows="6"><?= set_value("item_desc", $item->item_desc) ?></textarea>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class = "row">
-                                            <div class = "col-md-12">
-                                                <label for="item_desc">Item Description</label>
-                                                <textarea name = "item_desc" id="item_desc" placeholder = "Item Description" class="form-control" rows="6"><?= set_value("item_desc", $item->item_desc)?></textarea>
-                                            </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                                            <button type="submit" href="#" class="btn btn-primary">Save changes</button>
                                         </div>
                                     </div>
-
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
-                                        <a href="<?= base_url() ?>eventplanner/item_edit/<?= $item->item_id ?>" class="btn btn-primary">Save changes</a>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     <?php endforeach; ?>

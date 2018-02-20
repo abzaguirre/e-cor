@@ -105,7 +105,7 @@ class Eventplanner extends CI_Controller {
     public function item_add(){
         $this->form_validation->set_rules("item_name", "Item Name", "required");
         $this->form_validation->set_rules("item_price", "Item Price", "required");
-        $this->form_validation->set_rules("item_desc", "Item Description", "required|numerical");
+        $this->form_validation->set_rules("item_desc", "Item Description", "required");
         if ($this->form_validation->run() == FALSE){
             //ERROR
             print_r(validation_errors());
@@ -130,6 +130,31 @@ class Eventplanner extends CI_Controller {
             }
             redirect(base_url()."eventplanner/package_edit");
         }
+    }
+
+    public function item_edit(){
+        $this->form_validation->set_rules("item_name", "Item Name", "required");
+        $this->form_validation->set_rules("item_price", "Item Price", "required");
+        $this->form_validation->set_rules("item_desc", "Item Description", "required");
+        if($this->form_validation->run() == FALSE){
+            //ERROR
+            echo "<pre>";
+            print_r(validation_errors());
+            echo "</pre>";
+            die;
+        }else{
+            //SUCCESS
+            $item_id = $this->uri->segment(3);
+            $data = array(
+                "item_name" => $this->input->post("item_name"),
+                "item_price" => $this->input->post("item_price"),
+                "item_desc" => $this->input->post("item_desc"),
+                "item_updated_at" => time()
+            );
+            $this->Item_model->edit_item($data, array("item_id" => $item_id));
+            $this->session->set_flashdata("show_flash_success", "Successfully updated an item");
+        }
+        redirect(base_url()."eventplanner/packages");
     }
     
 }
