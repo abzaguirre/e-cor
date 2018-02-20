@@ -20,9 +20,17 @@ class Eventplanner extends CI_Controller {
         }
     }
     
+    //-------- CALLBACK ------------
+    public function decimal_check($val){
+        if (!is_int($val) || !is_float($val) ) {
+            $this->form_validation->set_message('weight_check', 'The {field} field must be number or decimal.');
+            return FALSE;
+        } else {
+            return TRUE;
+        }
+    }
+    
     public function index() {
-        
-        
         $current_ep = $this->Eventplanner_model->get_ep(array("event_planner_id" => 1))[0];
         $data = array(
             
@@ -170,7 +178,7 @@ class Eventplanner extends CI_Controller {
     
     public function item_add(){
         $this->form_validation->set_rules("item_name", "Item Name", "required");
-        $this->form_validation->set_rules("item_price", "Item Price", "required");
+        $this->form_validation->set_rules("item_price", "Item Price", "required|numerical");
         $this->form_validation->set_rules("item_desc", "Item Description", "required");
         if ($this->form_validation->run() == FALSE){
             //ERROR
@@ -195,8 +203,8 @@ class Eventplanner extends CI_Controller {
             }else{
                 $this->session->set_flashdata("show_flash_failed", "Something went wrong while adding an item.");
             }
-            redirect(base_url()."eventplanner/package_edit");
         }
+        redirect(base_url()."eventplanner/package_edit");
     }
 
     public function item_edit(){
