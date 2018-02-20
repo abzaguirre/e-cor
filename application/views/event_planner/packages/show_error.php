@@ -18,7 +18,7 @@
 <?php endif;?>
 <?php if(!empty($this->session->flashdata("show_flash_failed"))):?>
     <div class="alert alert-dismissible alert-danger alert-fixed mx-auto animated fadeInDownBig">
-        <strong><i class = "fa fa-exclamation-circle"></i></strong> <?= $this->session->flashdata("show_flash_failed")?>
+        <?= $this->session->flashdata("show_flash_failed")?>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
         </button>

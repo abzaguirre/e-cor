@@ -12,4 +12,12 @@ class Eventplanner_model extends CI_Model {
         return ($query->num_rows() > 0 ) ? $query->result() : FALSE;
     }
     
+    public function count_packages($ep_id){
+        $table = "packages";
+        $this->db->count_all_results($table);
+        $this->db->where(array("event_planner_id" => $ep_id));
+        $this->db->from($table);
+        return $this->db->count_all_results();
+    }
+    
 }
