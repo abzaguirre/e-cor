@@ -3,8 +3,8 @@
         <i class="fa fa-bars"></i>
     </a>
 
-    <a class="navbar-brand text-center" href="<?= base_url()?>eventplanner">
-        <img  src="<?= base_url()?>/images/logo/ecor-word-logo.png" alt="logo" height = "25">
+    <a class="navbar-brand text-center" href="<?= base_url() ?>eventplanner">
+        <img  src="<?= base_url() ?>/images/logo/ecor-word-logo.png" alt="logo" height = "25">
     </a>
 
     <a href="#" class="btn btn-link sidebar-toggle d-md-down-none">
@@ -14,8 +14,8 @@
     <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img src="<?= base_url().$ep_picture?>" class="avatar avatar-sm" alt="logo">
-                <span class="small ml-1 d-md-down-none"><?= $ep_username?></span>
+                <img src="<?= base_url() . $ep_picture ?>" class="avatar avatar-sm" alt="logo">
+                <span class="small ml-1 d-md-down-none"><?= $ep_username ?></span>
             </a>
 
             <div class="dropdown-menu dropdown-menu-right">
@@ -39,7 +39,7 @@
                     <i class="fa fa-wrench"></i> Settings
                 </a>
 
-                <a href="#" class="dropdown-item">
+                <a href="<?= base_url() ?>eventplannerlogout" class="dropdown-item">
                     <i class="fa fa-lock"></i> Logout
                 </a>
             </div>
