@@ -7,7 +7,6 @@ class Main extends CI_Controller {
     }
 
     public function index() {
-        //DITO CONTROLLER NG MAIN
         $data = array(
             'title' => 'E-Cor | Event Coordinator',
             'wholeUrl' => base_url(uri_string()),
