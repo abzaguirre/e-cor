@@ -35,7 +35,7 @@
         
         -->
         <!-- Default stylesheets-->
-        <link href="<?= base_url() ?>assets/main/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
         <!-- Template specific stylesheets-->
         <link href="<?= base_url() ?>https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
         <link href="<?= base_url() ?>https://fonts.googleapis.com/css?family=Volkhov:400i" rel="stylesheet">
@@ -156,7 +156,7 @@
             <nav class="navbar navbar-custom navbar-fixed-top bg-violet" role="navigation">
                 <div class="container">
                     <div class="navbar-header">
-                        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#custom-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="<?= base_url() ?>main/">E-COR</a>
+                        <a class="navbar-brand" href="<?= base_url() ?>main/">E-COR</a>
                     </div>
                 </div>
             </nav>
