@@ -59,7 +59,7 @@ $autoload['packages'] = array();
   |
   |	$autoload['libraries'] = array('user_agent' => 'ua');
  */
-$autoload['libraries'] = array('database', 'session', 'form_validation');
+$autoload['libraries'] = array('database', 'session', 'form_validation', 'Recaptcha', 'email');
 
 /*
   | -------------------------------------------------------------------
@@ -139,4 +139,5 @@ $autoload['model'] = array(
     "Transaction_model",
     "Item_model",
     "Login_model",
+    "Register_model",
 );
