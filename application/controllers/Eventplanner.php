@@ -22,8 +22,8 @@ class Eventplanner extends CI_Controller {
     
     //-------- CALLBACK ------------
     public function decimal_check($val){
-        if (!is_int($val) || !is_float($val) ) {
-            $this->form_validation->set_message('weight_check', 'The {field} field must be number or decimal.');
+        if (!is_numeric($val)) {
+            $this->form_validation->set_message('decimal_check', 'The {field} field must be number or decimal.');
             return FALSE;
         } else {
             return TRUE;
@@ -31,12 +31,15 @@ class Eventplanner extends CI_Controller {
     }
     
     public function index() {
-        $current_ep = $this->Eventplanner_model->get_ep(array("event_planner_id" => 1))[0];
+        
+        $packages_count = $this->Eventplanner_model->count_packages($this->session->userdata("userid"));
+        $current_ep = $this->Eventplanner_model->get_ep(array("event_planner_id" => $this->session->userdata("userid")))[0];
         $data = array(
             
             //-- DUMMY DATA --
             
             //-- NAV INFO --
+            "packages_count" => $packages_count,
             "current_ep" => $current_ep,
             "ep_username" => "$current_ep->event_planner_username",
             "ep_picture" => "$current_ep->event_planner_picture"
@@ -60,7 +63,7 @@ class Eventplanner extends CI_Controller {
         
         $packages = $this->Packages_model->get_packages_id(array("event_planner_id" => $ep_id));
         
-        $current_ep = $this->Eventplanner_model->get_ep(array("event_planner_id" => 1))[0];
+        $current_ep = $this->Eventplanner_model->get_ep(array("event_planner_id" => $this->session->userdata("userid")))[0];
         $data = array(
             
             //-- DUMMY DATA --
@@ -88,7 +91,7 @@ class Eventplanner extends CI_Controller {
         $package = $this->Packages_model->get_package_info(array("packages_id" => $package_id))[0];
         $items = $this->Packages_model->get_item_in_packages(array("item.packages_id" => $package_id));
         
-        $current_ep = $this->Eventplanner_model->get_ep(array("event_planner_id" => 1))[0];
+        $current_ep = $this->Eventplanner_model->get_ep(array("event_planner_id" => $this->session->userdata("userid")))[0];
         $data = array(
             
             "package" => $package,
@@ -111,7 +114,7 @@ class Eventplanner extends CI_Controller {
     public function package_edit_name(){
         $this->form_validation->set_rules("packages_name", "Package Name", "required");
         if($this->form_validation->run() == FALSE){
-            
+            $this->session->set_flashdata("show_flash_failed", validation_errors("<span><i class = 'fa fa-exclamation-circle'></i> ", "</span><br>"));
         }else{
             $package_id = $this->uri->segment(3);
 
@@ -123,7 +126,7 @@ class Eventplanner extends CI_Controller {
             $this->Packages_model->package_edit($data, array("packages_id" => $package_id));
             $this->session->set_flashdata("show_flash_success", "Successfully updated the package.");
         }
-        redirect(base_url()."eventplanner/packages");
+        redirect(base_url()."eventplanner/package_edit");
     }
     
     public function package_delete(){
@@ -140,9 +143,9 @@ class Eventplanner extends CI_Controller {
             //ERROR
             //print_r(validation_errors());
             //die;
-            $this->session->set_flashdata("show_flash_failed", "Invalid value/s detected.");
+            $this->session->set_flashdata("show_flash_failed", validation_errors("<span><i class = 'fa fa-exclamation-circle'></i> ", "</span><br>"));
         }else{
-            $current_ep = $this->Eventplanner_model->get_ep(array("event_planner_id" => 1))[0];
+            $current_ep = $this->Eventplanner_model->get_ep(array("event_planner_id" => $this->session->userdata("userid")))[0];
             $data = array(
                 "event_planner_id" => $current_ep->event_planner_id,
                 "packages_name" => $this->input->post("package_name"),
@@ -178,16 +181,17 @@ class Eventplanner extends CI_Controller {
     
     public function item_add(){
         $this->form_validation->set_rules("item_name", "Item Name", "required");
-        $this->form_validation->set_rules("item_price", "Item Price", "required|numerical");
+        $this->form_validation->set_rules("item_price", "Item Price", "required|callback_decimal_check");
         $this->form_validation->set_rules("item_desc", "Item Description", "required");
         if ($this->form_validation->run() == FALSE){
             //ERROR
-            //print_r(validation_errors());
-            //die;
-            $this->session->set_flashdata("show_flash_failed", "Invalid values detected.");
+//            echo $this->input->post("item_price");
+//            print_r(validation_errors());
+//            die;
+            $this->session->set_flashdata("show_flash_failed", validation_errors("<span><i class = 'fa fa-exclamation-circle'></i> ", "</span><br>"));
         }else{
             $package_id = $this->uri->segment(3);
-            $current_ep = $this->Eventplanner_model->get_ep(array("event_planner_id" => 1))[0];
+            $current_ep = $this->Eventplanner_model->get_ep(array("event_planner_id" => $this->session->userdata("userid")))[0];
             $data = array(
                 "event_planner_id"  => $current_ep->event_planner_id,
                 "packages_id"       => $package_id,
@@ -217,7 +221,7 @@ class Eventplanner extends CI_Controller {
 //            print_r(validation_errors());
 //            echo "</pre>";
 //            die;
-            $this->session->set_flashdata("show_flash_failed", "Invalid values detected.");
+            $this->session->set_flashdata("show_flash_failed", validation_errors("<span><i class = 'fa fa-exclamation-circle'></i> ", "</span><br>"));
         }else{
             //SUCCESS
             $item_id = $this->uri->segment(3);
@@ -232,4 +236,37 @@ class Eventplanner extends CI_Controller {
         }
     }
     
+    public function item_edit_ajax(){
+        $this->form_validation->set_rules("item_name", "Item Name", "required");
+        $this->form_validation->set_rules("item_price", "Item Price", "required");
+        $this->form_validation->set_rules("item_desc", "Item Description", "required");
+        if($this->form_validation->run() == FALSE){
+            //ERROR
+//            echo "<pre>";
+//            print_r(validation_errors());
+//            echo "</pre>";
+//            die;
+            $this->session->set_flashdata("show_flash_failed", validation_errors("<span><i class = 'fa fa-exclamation-circle'></i> ", "</span><br>"));
+            echo json_encode(array(
+                "success" => false,
+                "result" => validation_errors("<span><i class = 'fa fa-exclamation-circle'></i> ", "</span><br>")    
+            ));
+        }else{
+            //SUCCESS
+            $item_id = $this->uri->segment(3);
+            $data = array(
+                "item_name" => $this->input->post("item_name"),
+                "item_price" => $this->input->post("item_price"),
+                "item_desc" => $this->input->post("item_desc"),
+                "item_updated_at" => time()
+            );
+            $this->Item_model->edit_item($data, array("item_id" => $item_id));
+            $this->session->set_flashdata("show_flash_success", "Successfully updated an item");
+            echo json_encode(array(
+                "success" => true,
+                "result" => "Successfully updated an item",
+                "data" => $data
+            ));
+        }
+    }
 }

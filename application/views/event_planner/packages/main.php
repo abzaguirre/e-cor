@@ -55,7 +55,7 @@ PACKAGES
                                 <i class="fa fa-pencil"></i>
                             </a>
                             <a href="#" class="btn" data-toggle="modal" data-target="#package_delete_<?= $package->packages_id ?>" title = "Remove Package">
-                                <i class="fa fa-times"></i>
+                                <i class="fa fa-trash"></i>
                             </a>
                         </div>
                     </div>
@@ -151,17 +151,24 @@ PACKAGES
                                     <i class = "fa fa-archive"></i> <?= $package->packages_name ?>
                                 </div>
                                 <!-- ITEM LISTS -->
-                                <?php foreach ($items as $item): ?>
-                                    <div class="card-body d-flex justify-content-between align-items-center" style = "cursor:pointer;" data-toggle="collapse" data-target="#collapse_item_delete<?= $item->item_id ?>">
-                                        <?= $item->item_name ?>
-                                        <div class="text-muted">
-                                            Php. <?= $item->item_price ?>
+                                <?php if (!empty($items)): ?>
+                                    <?php foreach ($items as $item): ?>
+                                        <div class="card-body d-flex justify-content-between align-items-center" style = "cursor:pointer;" data-toggle="collapse" data-target="#collapse_item_delete<?= $item->item_id ?>">
+                                            <?= $item->item_name ?>
+                                            <div class="text-muted">
+                                                Php. <?= $item->item_price ?>
+                                            </div>
                                         </div>
+                                        <div class="card-body border-0 d-flex justify-content-between align-items-center" style = "background:#ededed;">
+                                            <i><?= $item->item_desc ?></i>
+                                        </div>
+                                    <?php endforeach; ?>
+
+                                <?php else: ?>
+                                    <div class="card-body d-flex justify-content-between align-items-center" >
+                                        <span class = "text-muted">NO ITEMS YET</span>
                                     </div>
-                                    <div class="card-body border-0 d-flex justify-content-between align-items-center" style = "background:#ededed;">
-                                        <i><?= $item->item_desc ?></i>
-                                    </div>
-                                <?php endforeach; ?>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="modal-footer border-0">
