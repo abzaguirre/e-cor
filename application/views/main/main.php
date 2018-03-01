@@ -5,7 +5,7 @@
             <div class="video-controls"><a class="fa fa-volume-up" id="video-volume" href="#">&nbsp;</a><a class="fa fa-pause" id="video-play" href="#">&nbsp;</a></div>
         </div>
     </div>
-    
+
     <div class="titan-caption">
         <div class="caption-content">
             <div class="shadow font-alt mb-30 titan-title-size-1" style="color:#ef4a42; font-size:30px;">Hello &amp; welcome</div>
@@ -364,6 +364,22 @@
                     </div>
                 </li>
             </ul>
+        </div>
+    </section>
+    <br><br>
+    <section class="module-small bg-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-8 col-lg-6 col-lg-offset-2">
+                    <div class="callout-text font-alt">
+                        <h3 class="callout-title">Want to become a freelance Event Planner?</h3>
+                        <p>Register to E-Cor to earn more money.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2">
+                    <div class="callout-btn-box"><a class="btn btn-w btn-round" href="<?= base_url() ?>register/registerEventPlanner">Register</a></div>
+                </div>
+            </div>
         </div>
     </section>
     <section class="module" id="contact">
