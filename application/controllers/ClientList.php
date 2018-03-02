@@ -1,6 +1,6 @@
 <?php
 
-class Client extends CI_Controller {
+class ClientList extends CI_Controller {
 
     function __construct() {
         parent::__construct();
@@ -22,9 +22,12 @@ class Client extends CI_Controller {
     }
 
     public function index() {
+        $ep = $this->List_model->fetch("event_planner");
         $current_client = $this->Client_model->get_client(array("client_id" => $this->session->userdata("userid")))[0];
         $data = array(
-            //-- DUMMY DATA --
+            //-- DATAS
+            "ep" => $ep,
+            
             //-- NAV INFO --
             "title" => "E-Cor | $current_client->client_username",
             "current_ep" => $current_client,
@@ -35,7 +38,7 @@ class Client extends CI_Controller {
         $this->load->view("client/includes/header", $data);
         $this->load->view("client/navigation/nav_header");
         $this->load->view("client/navigation/nav_side");
-        $this->load->view("client/dashboard/main");
+        $this->load->view("client/list/main");
         $this->load->view("client/includes/footer");
     }
 
