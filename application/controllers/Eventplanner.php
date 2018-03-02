@@ -82,6 +82,7 @@ class Eventplanner extends CI_Controller {
             //-- DUMMY DATA --
             "packages_id" => $packages,
             //-- NAV INFO --
+            "title" => "E-Cor | $current_ep->event_planner_username",
             "current_ep" => $current_ep,
             "ep_username" => "ralph_adrian",
             "ep_picture" => "images/user/ralph.jpg"
@@ -110,6 +111,7 @@ class Eventplanner extends CI_Controller {
             "items" => $items,
             //-- DUMMY DATA --
             //-- NAV INFO --
+            "title" => "E-Cor | $current_ep->event_planner_username",
             "current_ep" => $current_ep,
             "ep_username" => "ralph_adrian",
             "ep_picture" => "images/user/ralph.jpg"
