@@ -12,8 +12,10 @@
             </div>
             <div class="col-sm-6">
                 <div class="footer-social-links" style="color:black">
-                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="https://www.facebook.com/fit.creative.solutions"><i class="fa fa-facebook"></i></a>
                     <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="https://www.youtube.com/channel/UCkiaqEpZOLBVAXzPdzm4d4Q?view_as=subscriber"><i class="fa fa-youtube-play"></i></a>
+
                 </div>
             </div>
         </div>
