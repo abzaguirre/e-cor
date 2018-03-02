@@ -43,10 +43,6 @@ class Login extends CI_Controller {
         } else {
             $accountDetailsEventPlanner = $accountDetailsEventPlanner[0];
             $accountDetailsClient = $accountDetailsClient[0];
-//            echo "<pre>";
-//            print_r($accountDetailsEventPlanner);
-//            echo "</pre>";
-//            die;
             if ($accountDetailsEventPlanner->event_planner_username == $this->input->post('username')) {
                
                 if ($accountDetailsEventPlanner->event_planner_status == 0) {
@@ -81,7 +77,7 @@ class Login extends CI_Controller {
                         $this->session->set_userdata('userid', $accountDetailsClient->client_id);
                         $this->session->set_userdata('current_user', $accountDetailsClient);
                         $this->session->set_userdata('user_access', "Client");
-                        redirect(base_url() . 'main/');
+                        redirect(base_url() . 'client/');
                     }
                 }
             }

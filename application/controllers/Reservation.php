@@ -1,6 +1,6 @@
 <?php
 
-class Client extends CI_Controller {
+class Reservation extends CI_Controller {
 
     function __construct() {
         parent::__construct();
@@ -35,7 +35,7 @@ class Client extends CI_Controller {
         $this->load->view("client/includes/header", $data);
         $this->load->view("client/navigation/nav_header");
         $this->load->view("client/navigation/nav_side");
-        $this->load->view("client/dashboard/main");
+        $this->load->view("client/reservation/main");
         $this->load->view("client/includes/footer");
     }
 

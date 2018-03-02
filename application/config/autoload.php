@@ -136,6 +136,8 @@ $autoload['language'] = array();
 $autoload['model'] = array(
     "Packages_model",
     "Eventplanner_model",
+    "Client_model",
+    "List_model",
     "Transaction_model",
     "Item_model",
     "Login_model",
