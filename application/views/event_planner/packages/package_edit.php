@@ -152,7 +152,7 @@ EDIT PACKAGE
                                                                 <div class="card-header bg-light d-flex justify-content-between">
                                                                     <strong><?= $item->item_name; ?></strong>
                                                                     <div class="text-muted">
-                                                                        Php. <?= $item->item_price ?>
+                                                                        ₱ <?= $item->item_price ?>
                                                                     </div>
                                                                 </div>
                                                                 <div class = "card-body" style = "background:#ededed;">

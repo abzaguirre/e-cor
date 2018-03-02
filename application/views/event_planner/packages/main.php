@@ -68,7 +68,7 @@ PACKAGES
                             <a class="card-body d-flex justify-content-between align-items-center" style = "cursor:pointer;" data-toggle="collapse" data-target="#collapse_item_<?= $item->item_id ?>">
                                 <?= $item->item_name ?>
                                 <div class="text-muted">
-                                    Php. <?= $item->item_price ?>
+                                    ₱ <?= $item->item_price ?>
                                 </div>
                             </a>
                             <div class="collapse" id="collapse_item_<?= $item->item_id ?>">
@@ -132,7 +132,7 @@ PACKAGES
                     <hr/>
                     <div class ="card-footer d-flex justify-content-between align-items-center pt-0">
                         <span class = "ml-4">TOTAL:</span>
-                        <div class="text-muted"><strong>Php. <?= $total_price ?></strong></div>
+                        <div class="text-muted"><strong>₱ <?= $total_price ?></strong></div>
                     </div>
                 </div>
             </div>
@@ -156,7 +156,7 @@ PACKAGES
                                         <div class="card-body d-flex justify-content-between align-items-center" style = "cursor:pointer;" data-toggle="collapse" data-target="#collapse_item_delete<?= $item->item_id ?>">
                                             <?= $item->item_name ?>
                                             <div class="text-muted">
-                                                Php. <?= $item->item_price ?>
+                                                ₱ <?= $item->item_price ?>
                                             </div>
                                         </div>
                                         <div class="card-body border-0 d-flex justify-content-between align-items-center" style = "background:#ededed;">
