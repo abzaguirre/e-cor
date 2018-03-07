@@ -35,6 +35,11 @@
             color: #F1C40F;
             opacity: 0.7;
         }
+        .intro{
+            background:#E0E0E0;
+            margin-top:10px;
+            border-radius: 10px;
+        }
     </style>
     <body class="sidebar-fixed header-fixed">
         <div class="page-wrapper">
