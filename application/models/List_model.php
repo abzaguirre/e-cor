@@ -30,6 +30,30 @@ class List_model extends CI_Model {
         return ($query->num_rows() > 0 ) ? $query->result() : FALSE;
     }
 
+    public function get_ep_comment($where = NULL) {
+        $table = "rating";
+        $join = "client";
+        $on = "rating.client_id = client.client_id";
+        $this->db->join($join, $on, "left outer");
+        if (!empty($where)) {
+            $this->db->where($where);
+        }
+        $query = $this->db->get($table);
+        return ($query->num_rows() > 0 ) ? $query->result() : FALSE;
+    }
+
+    public function get_ep_specialty($where = NULL) {
+        $table = "event_specialty";
+        $join = "event_planner";
+        $on = "event_specialty.event_planner_id = event_planner.event_planner_id";
+        $this->db->join($join, $on, "left outer");
+        if (!empty($where)) {
+            $this->db->where($where);
+        }
+        $query = $this->db->get($table);
+        return ($query->num_rows() > 0 ) ? $query->result() : FALSE;
+    }
+
     function get_ratings($where = NULL) {
         $table = "rating";
         $this->db->select_avg('rating_percentage');
