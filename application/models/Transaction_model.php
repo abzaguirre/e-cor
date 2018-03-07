@@ -71,5 +71,14 @@ class Transaction_model extends CI_Model {
         $query = $this->db->get($table);
         return ($query->num_rows() > 0 ) ? $query->result() : FALSE;
     }
+    
+    public function edit_transaction($data, $where = NULL){
+        $table = "transaction";
+        if(!empty($where)){
+            $this->db->where($where);
+        }
+        $this->db->update($table, $data);
+        return $this->db->affected_rows();
+    }
 }
 
