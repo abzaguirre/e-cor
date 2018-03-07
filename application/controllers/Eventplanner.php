@@ -300,5 +300,9 @@ class Eventplanner extends CI_Controller {
             }
         }
     }
+    
+    public function schedules_exec(){
+        redirect(base_url()."schedules");
+    }
 
 }

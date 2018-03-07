@@ -20,6 +20,12 @@
         <!-- Page level plugin CSS-->
         <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet">
         
+        <!-- Full Calendar -->
+        <link rel ="stylesheet" href ="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.6.2/fullcalendar.css">
+        
+        <!-- Bootstrap Datepicker -->
+        <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/smalot-bootstrap-datetimepicker/2.4.4/css/bootstrap-datetimepicker.min.css">
+        
         
         <link rel="stylesheet" href="<?= base_url() ?>assets/user/custom/css/styles.css">
     </head>

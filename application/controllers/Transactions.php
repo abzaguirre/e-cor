@@ -46,4 +46,21 @@ class Transactions extends CI_Controller {
         $this->load->view("event_planner/transactions/main");
         $this->load->view("event_planner/includes/footer");
     }
+    public function done_transaction(){
+        //transaction done
+        $transaction_id = $this->uri->segment(3);
+        $data = array("transaction_isDone" => 1);
+        $this->Transaction_model->edit_transaction($data, array("transaction_id" => $transaction_id));
+        $this->session->set_flashdata("show_flash_success", "Transaction finished");
+        redirect(base_url()."transactions");
+    }
+    
+    public function cancel_transaction(){
+        //transaction dropped
+        $transaction_id = $this->uri->segment(3);
+        $data = array("transaction_isActive" => 0);
+        $this->Transaction_model->edit_transaction($data, array("transaction_id" => $transaction_id));
+        $this->session->set_flashdata("show_flash_success", "Successfully cancelled the transaction");
+        redirect(base_url()."transactions");
+    }
 }
