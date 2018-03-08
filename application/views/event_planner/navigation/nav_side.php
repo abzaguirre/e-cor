@@ -21,6 +21,12 @@
                 </a>
             </li>
             
+            <li class="nav-item">
+                <a href="<?= base_url()?>eventplanner/schedules_exec" class="nav-link <?= strpos(base_url(uri_string()), base_url()."schedules") !== FALSE? "active":"" ;?>">
+                    <i class="fa fa-calendar"></i> Schedules
+                </a>
+            </li>
+            
             <li class="nav-item nav-dropdown">
                 <a href="#" class="nav-link nav-dropdown-toggle">
                     <i class="icon icon-target"></i> Layouts <i class="fa fa-caret-left"></i>

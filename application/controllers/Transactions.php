@@ -34,7 +34,7 @@ class Transactions extends CI_Controller {
             "packages" => $packages,
             
             //-- NAV INFO --
-            "title" => "E-Cor | $current_ep->event_planner_username",
+            "title" => $current_ep->event_planner_username,
             "current_ep" => $current_ep,
             "ep_username" => "$current_ep->event_planner_username",
             "ep_picture" => "$current_ep->event_planner_picture"
@@ -45,5 +45,14 @@ class Transactions extends CI_Controller {
         $this->load->view("event_planner/navigation/nav_side");
         $this->load->view("event_planner/transactions/main");
         $this->load->view("event_planner/includes/footer");
+    }
+    
+    public function cancel_transaction(){
+        //transaction dropped
+        $transaction_id = $this->uri->segment(3);
+        $data = array("transaction_isActive" => 0);
+        $this->Transaction_model->edit_transaction($data, array("transaction_id" => $transaction_id));
+        $this->session->set_flashdata("show_flash_success", "Successfully cancelled the transaction");
+        redirect(base_url()."transactions");
     }
 }

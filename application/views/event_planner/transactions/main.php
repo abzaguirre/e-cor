@@ -25,6 +25,7 @@ PACKAGES
     }
 </style>
 <div class="content">
+    <?php include 'show_error.php'; ?>
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a class = "text-info" href="<?= base_url()?>eventplanner/">Dashboard</a></li>
         <li class="breadcrumb-item active" aria-current="page">Transactions</li>
@@ -96,16 +97,22 @@ PACKAGES
                             </div>
                             <div class = "col-md-3"></div>
                         </div>
-                    <?php endif;?>
                     <center>
                         <h5>Client's Side Notes</h5>
                         <i class = "text-muted"><?=$transactionsActive[0]->transaction_notes;?></i>
                     </center>
-                    <br><br>
-                    <center>
-                        <h5>Started at</h5>
+                    <center class = "mt-5">
+                        <h5>Schedule</h5>
+                        <i class = "text-muted"><?= date("F d, Y - h:i A", $transactionsActive[0]->schedule_startdate);?></i>
+                    </center>
+                    <center class = "mt-5">
+                        <h5>Reserved at</h5>
                         <i class = "text-muted"><?= date("F d, Y - h:i A", $transactionsActive[0]->transaction_added_at);?></i>
                     </center>
+                    <center class = "mt-5">
+                        <a class = "btn btn-danger" href = "<?= base_url()?>Transactions/cancel_transaction/<?=$transactionsActive[0]->transaction_id?>">Cancel Transaction</a> 
+                    </center>
+                    <?php endif;?>
                 </div>
             </div>
         </div>
@@ -130,13 +137,13 @@ PACKAGES
                                 </thead>
                                 <tbody>
                                     <?php foreach($transactionsInactive as $transaction):?>
-                                    <?php $total_price = get_cost($transaction->packages_id)?>
-                                    <tr>
-                                        <td><?= $transaction->transaction_id?></td>
-                                        <td class="text-nowrap"><?= $transaction->client_firstname." ".$transaction->client_lastname?></td>
-                                        <td><?= $transaction->packages_name?></td>
-                                        <td>₱ <?= $total_price?></td>
-                                    </tr>
+                                        <?php $total_price = get_cost($transaction->packages_id)?>
+                                        <tr>
+                                            <td><?= $transaction->transaction_id?></td>
+                                            <td class="text-nowrap"><?= $transaction->client_firstname." ".$transaction->client_lastname?></td>
+                                            <td><?= $transaction->packages_name?></td>
+                                            <td>₱ <?= $total_price?></td>
+                                        </tr>
                                     <?php endforeach;?>
                                 </tbody>
                             </table>

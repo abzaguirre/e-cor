@@ -47,6 +47,26 @@
 </script>
 <!-- SweetAlert -->
 <script src = "https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<!-- FullCalendar -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.6.2/fullcalendar.min.js"></script>
+
+<!-- Bootstrap Datepicker -->
+<script src="<?= base_url() ?>assets/bootstrap-datepicker/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript">
+ var dt = new Date();
+ dt.setFullYear(new Date().getFullYear());
+ $(document).ready(function () {
+     $(".form_datetime").datetimepicker({
+         format: 'MM d, yyyy',
+         todayBtn: true,
+         autoclose: true,
+         minView: 2,
+         startView: 2,
+     });
+     $('.form_datetime').datetimepicker('setEndDate', dt);
+ });
+</script>
 <script src="<?= base_url() ?>assets/user/custom/js/carbon.js"></script>
 <script src="<?= base_url() ?>assets/user/custom/js/demo.js"></script>
 </body>
