@@ -110,8 +110,7 @@ PACKAGES
                         <i class = "text-muted"><?= date("F d, Y - h:i A", $transactionsActive[0]->transaction_added_at);?></i>
                     </center>
                     <center class = "mt-5">
-                        <a class = "btn btn-danger" href = "<?= base_url()?>Transactions/cancel_transaction/<?=$transactionsActive[0]->transaction_id?>">Cancel Transaction</a>
-                        <a class = "btn btn-success" href = "<?= base_url()?>Transactions/done_transaction/<?=$transactionsActive[0]->transaction_id?>">Done Transaction</a>
+                        <a class = "btn btn-danger" href = "<?= base_url()?>Transactions/cancel_transaction/<?=$transactionsActive[0]->transaction_id?>">Cancel Transaction</a> 
                     </center>
                     <?php endif;?>
                 </div>
