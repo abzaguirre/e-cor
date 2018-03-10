@@ -1,190 +1,47 @@
+<?php 
+    function get_cost($package_id){
+        $ci =& get_instance();
+        $total_price = 0; 
+        $items = $ci->Packages_model->get_item_in_packages(array("item.packages_id" => $package_id));
+        foreach($items as $item){
+            $total_price += $item->item_price;
+        }
+        return $total_price;
+    }
+?>
 <div class="sidebar">
     <nav class="sidebar-nav">
         <ul class="nav">
             <li class="nav-title">Navigation</li>
 
             <li class="nav-item">
-                <a href="<?= base_url()?>eventplanner" class="nav-link <?= base_url(uri_string()) == base_url()."eventplanner" ? "active":"" ;?>">
+                <a href="<?= base_url()?>Eventplanner" class="nav-link <?= base_url(uri_string()) == base_url()."eventplanner" ? "active":"" ;?>">
                     <i class="icon icon-speedometer"></i> Dashboard
                 </a>
             </li>
 
             <li class="nav-item">
-                <a href="<?= base_url()?>eventplanner/packages_exec/<?= $current_ep->event_planner_id?>" class="nav-link <?= strpos(base_url(uri_string()), base_url()."eventplanner/packages") !== FALSE || strpos(base_url(uri_string()), base_url()."eventplanner/package_edit") !== FALSE ? "active":"" ;?>">
+                <a href="<?= base_url()?>Eventplanner/packages_exec/<?= $current_ep->event_planner_id?>" class="nav-link <?= strpos(base_url(uri_string()), base_url()."eventplanner/packages") !== FALSE || strpos(base_url(uri_string()), base_url()."eventplanner/package_edit") !== FALSE ? "active":"" ;?>">
                     <i class="fa fa-archive"></i> Packages
                 </a>
             </li>
             
             <li class="nav-item">
-                <a href="<?= base_url()?>eventplanner/transactions_exec/<?= $current_ep->event_planner_id?>" class="nav-link <?= strpos(base_url(uri_string()), base_url()."transactions") !== FALSE? "active":"" ;?>">
+                <a href="<?= base_url()?>Eventplanner/transactions_exec/<?= $current_ep->event_planner_id?>" class="nav-link <?= strpos(base_url(uri_string()), base_url()."transactions") !== FALSE? "active":"" ;?>">
                     <i class="fa fa-birthday-cake"></i> Transactions
                 </a>
             </li>
             
             <li class="nav-item">
-                <a href="<?= base_url()?>eventplanner/schedules_exec" class="nav-link <?= strpos(base_url(uri_string()), base_url()."schedules") !== FALSE? "active":"" ;?>">
-                    <i class="fa fa-calendar"></i> Schedules
+                <a href="<?= base_url()?>Eventplanner/pending_request_exec" class="nav-link <?= strpos(base_url(uri_string()), base_url()."pending_request") !== FALSE? "active":"" ;?>">
+                    <i class="fa fa-plus-square"></i> Pending Request 
                 </a>
             </li>
             
-            <li class="nav-item nav-dropdown">
-                <a href="#" class="nav-link nav-dropdown-toggle">
-                    <i class="icon icon-target"></i> Layouts <i class="fa fa-caret-left"></i>
-                </a>
-
-                <ul class="nav-dropdown-items">
-                    <li class="nav-item">
-                        <a href="layouts-normal.html" class="nav-link">
-                            <i class="icon icon-target"></i> Normal
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="layouts-fixed-sidebar.html" class="nav-link">
-                            <i class="icon icon-target"></i> Fixed Sidebar
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="layouts-fixed-header.html" class="nav-link">
-                            <i class="icon icon-target"></i> Fixed Header
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="layouts-hidden-sidebar.html" class="nav-link">
-                            <i class="icon icon-target"></i> Hidden Sidebar
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="nav-item nav-dropdown">
-                <a href="#" class="nav-link nav-dropdown-toggle">
-                    <i class="icon icon-energy"></i> UI Kits <i class="fa fa-caret-left"></i>
-                </a>
-
-                <ul class="nav-dropdown-items">
-                    <li class="nav-item">
-                        <a href="alerts.html" class="nav-link">
-                            <i class="icon icon-energy"></i> Alerts
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="buttons.html" class="nav-link">
-                            <i class="icon icon-energy"></i> Buttons
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="cards.html" class="nav-link">
-                            <i class="icon icon-energy"></i> Cards
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="modals.html" class="nav-link">
-                            <i class="icon icon-energy"></i> Modals
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="tabs.html" class="nav-link">
-                            <i class="icon icon-energy"></i> Tabs
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="progress-bars.html" class="nav-link">
-                            <i class="icon icon-energy"></i> Progress Bars
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="widgets.html" class="nav-link">
-                            <i class="icon icon-energy"></i> Widgets
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="nav-item nav-dropdown">
-                <a href="#" class="nav-link nav-dropdown-toggle">
-                    <i class="icon icon-graph"></i> Charts <i class="fa fa-caret-left"></i>
-                </a>
-
-                <ul class="nav-dropdown-items">
-                    <li class="nav-item">
-                        <a href="chartjs.html" class="nav-link">
-                            <i class="icon icon-graph"></i> Chart.js
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
             <li class="nav-item">
-                <a href="forms.html" class="nav-link">
-                    <i class="icon icon-puzzle"></i> Forms
+                <a href="<?= base_url()?>Eventplanner/schedules_exec" class="nav-link <?= strpos(base_url(uri_string()), base_url()."schedules") !== FALSE? "active":"" ;?>">
+                    <i class="fa fa-calendar"></i> Schedules
                 </a>
-            </li>
-
-            <li class="nav-item">
-                <a href="tables.html" class="nav-link">
-                    <i class="icon icon-grid"></i> Tables
-                </a>
-            </li>
-
-            <li class="nav-title">More</li>
-
-            <li class="nav-item nav-dropdown">
-                <a href="#" class="nav-link nav-dropdown-toggle">
-                    <i class="icon icon-umbrella"></i> Pages <i class="fa fa-caret-left"></i>
-                </a>
-
-                <ul class="nav-dropdown-items">
-                    <li class="nav-item">
-                        <a href="blank.html" class="nav-link">
-                            <i class="icon icon-umbrella"></i> Blank Page
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="login.html" class="nav-link">
-                            <i class="icon icon-umbrella"></i> Login
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="register.html" class="nav-link">
-                            <i class="icon icon-umbrella"></i> Register
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="invoice.html" class="nav-link">
-                            <i class="icon icon-umbrella"></i> Invoice
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="404.html" class="nav-link">
-                            <i class="icon icon-umbrella"></i> 404
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="500.html" class="nav-link">
-                            <i class="icon icon-umbrella"></i> 500
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="settings.html" class="nav-link">
-                            <i class="icon icon-umbrella"></i> Settings
-                        </a>
-                    </li>
-                </ul>
             </li>
         </ul>
     </nav>

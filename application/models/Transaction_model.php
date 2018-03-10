@@ -19,6 +19,7 @@ class Transaction_model extends CI_Model {
         
         $this->db->where(array("transaction.event_planner_id" => $event_planner_id));
         $this->db->where(array("transaction_isActive" => 1));
+        $this->db->where(array("transaction_isAccept" => 1));
         $this->db->where(array("transaction_isDone" => 0));
         
         $query = $this->db->get($table);
@@ -42,13 +43,14 @@ class Transaction_model extends CI_Model {
         
         $this->db->where(array("transaction.event_planner_id" => $event_planner_id));
         $this->db->where(array("transaction_isActive" => 0));
+        $this->db->where(array("transaction_isAccept" => 1));
         $this->db->where(array("transaction_isDone" => 1));
         
         $query = $this->db->get($table);
         return ($query->num_rows() > 0 ) ? $query->result() : FALSE;
     }
     
-    public function get_pending_transactions(){
+    public function get_pending_transactions($event_planner_id){
         $table = "transaction";
         $join = "event_planner";
         $on = "transaction.event_planner_id = event_planner.event_planner_id";
@@ -66,6 +68,7 @@ class Transaction_model extends CI_Model {
         
         $this->db->where(array("transaction.event_planner_id" => $event_planner_id));
         $this->db->where(array("transaction_isActive" => 0));
+        $this->db->where(array("transaction_isAccept" => 0));
         $this->db->where(array("transaction_isDone" => 0));
         
         $query = $this->db->get($table);

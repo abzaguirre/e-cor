@@ -1,18 +1,6 @@
 <!--============================
 PACKAGES
 =============================-->
-
-<?php 
-    function get_cost($package_id){
-        $ci =& get_instance();
-        $total_price = 0; 
-        $items = $ci->Packages_model->get_item_in_packages(array("item.packages_id" => $package_id));
-        foreach($items as $item){
-            $total_price += $item->item_price;
-        }
-        return $total_price;
-    }
-?>
 <style>
     .image-fit{
         padding:5px;
@@ -149,7 +137,10 @@ PACKAGES
                             </table>
                         </div>
                     <?php else:?>
-                        <!-- NO RECENT TRANSACTION -->
+                        <div class = "text-center">
+                            <i class = "fa fa-exclamation-circle fa-5x"></i><br/>
+                            <h3>No Pending Requests</h3>
+                        </div>
                     <?php endif;?>
                 </div>
             </div>

@@ -142,5 +142,6 @@ $autoload['model'] = array(
     "Item_model",
     "Login_model",
     "Register_model",
-    "Schedules_model"
+    "Schedules_model",
+    "Pending_Request_model"
 );
