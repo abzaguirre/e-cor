@@ -301,8 +301,14 @@ class Eventplanner extends CI_Controller {
         }
     }
     
+    public function pending_request_exec(){
+        redirect(base_url()."pending_request");
+    }
+    
     public function schedules_exec(){
         redirect(base_url()."schedules");
     }
+    
+   
 
 }
