@@ -50,7 +50,7 @@ class Transaction_model extends CI_Model {
         return ($query->num_rows() > 0 ) ? $query->result() : FALSE;
     }
 
-    public function get_pending_transactions() {
+    public function get_pending_transactions($event_planner_id) {
         $table = "transaction";
         $join = "event_planner";
         $on = "transaction.event_planner_id = event_planner.event_planner_id";
