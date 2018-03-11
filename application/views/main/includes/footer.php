@@ -7,8 +7,49 @@
             <div class="col-sm-2">
                 <div class="alt-services-image align-center"><img src="<?= base_url() ?>images/logo/MainLogo.png" alt="Feature Image"></div>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-5">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <button class="btn btn-primary btn-circle">
+                            <i class="fa fa-map-marker fa-lg"></i>
+                        </button>
+                        <button class="btn btn-primary btn-circle mt-40">
+                            <i class="fa fa-phone fa-lg"></i>
+                        </button>
+                    </div>        
+                    <div class="col-sm-4">
+                        <label style="color:black;">Unit 18K Gateway Regency Edsa cor Pioneer Street Mandaluyong City</label>
+                        <label style="color:black;" class="mt-10">09151285795</label>
+
+                    </div>
+                </div>            
+            </div>            
+        </div>
+        <div class="row mt-40">
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-2">
+                <div class="alt-services-image align-center"><img src="<?= base_url() ?>images/icon/PayPal.png" alt="Feature Image"></div>
+
+            </div>
+            <div class="col-md-2">
+                <div class="alt-services-image align-center "><img src="<?= base_url() ?>images/icon/visa.png" style="height:100px; margin-top:-30px;" alt="Feature Image"></div>
+
+            </div>
+            <div class="col-md-2">
+                <div class="alt-services-image align-center "><img src="<?= base_url() ?>images/icon/master.png" style="height:100px; margin-top:-30px;" alt="Feature Image"></div>
+
+            </div>
+            <div class="col-md-3">
+            </div>
+        </div>
+        <div class="row mt-10">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+
                 <div class="widget">
+
                     <center>
                         <h4 class="font-serif" style='color:black;'>Ralph Adrian Buen | Juan Carlo Valencia | Angelo Markus Zaguirre | Katrina Ysabel Esdicul</h4>
                         <div class="row">
@@ -25,6 +66,7 @@
                     </center>
                 </div>
             </div>
+            <div class="col-md-4"></div>
         </div>
     </div>
 </div>
