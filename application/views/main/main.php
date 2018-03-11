@@ -72,9 +72,9 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="video-box">
-                        <div class="video-box-icon"><a class="video-pop-up" href="https://www.youtube.com/watch?v=TTxZj3DZiIM"><span class="icon-video"></span></a></div>
+                        <div class="video-box-icon"><a class="video-pop-up" href="https://www.youtube.com/watch?v=Ikz5-A3lfnA"><span class="icon-video"></span></a></div>
                         <div class="video-title font-alt">Presentation</div>
-                        <div class="video-subtitle font-alt">Watch the video about our new products</div>
+                        <div class="video-subtitle font-alt">Watch the video about our new application</div>
                     </div>
                 </div>
             </div>
@@ -288,85 +288,7 @@
             </div>
         </div>
     </section>
-    <section class="module bg-dark-60 pt-0 pb-0 parallax-bg testimonial">
-        <div class="testimonials-slider pt-140 pb-140 bg-dark-90">
-            <ul class="slides">
-                <li>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="module-icon"><span class="icon-quote"></span></div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-8 col-sm-offset-2">
-                                <blockquote class="testimonial-text font-alt">I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine.</blockquote>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4 col-sm-offset-4">
-                                <div class="testimonial-author">
-                                    <div class="testimonial-caption font-alt">
-                                        <div class="testimonial-title">Jack Woods</div>
-                                        <div class="testimonial-descr">SomeCompany INC, CEO</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="module-icon"><span class="icon-quote"></span></div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-8 col-sm-offset-2">
-                                <blockquote class="testimonial-text font-alt">I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never was a greater artist than now.</blockquote>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4 col-sm-offset-4">
-                                <div class="testimonial-author">
-                                    <div class="testimonial-caption font-alt">
-                                        <div class="testimonial-title">Jim Stone</div>
-                                        <div class="testimonial-descr">SomeCompany INC, CEO</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="module-icon"><span class="icon-quote"></span></div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-8 col-sm-offset-2">
-                                <blockquote class="testimonial-text font-alt">I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect my talents.</blockquote>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4 col-sm-offset-4">
-                                <div class="testimonial-author">
-                                    <div class="testimonial-caption font-alt">
-                                        <div class="testimonial-title">Adele Snow</div>
-                                        <div class="testimonial-descr">SomeCompany INC, CEO</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </section>
-    <br><br>
+
     <section class="module-small bg-dark">
         <div class="container">
             <div class="row">

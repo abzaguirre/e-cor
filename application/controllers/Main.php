@@ -8,6 +8,7 @@ class Main extends CI_Controller {
 
     public function index() {
         $data = array(
+            //
             'title' => 'E-Cor | Event Coordinator',
             'wholeUrl' => base_url(uri_string()),
         );
