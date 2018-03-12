@@ -53,6 +53,26 @@
         <link id="color-scheme" href="<?= base_url() ?>assets/main/css/colors/default.css" rel="stylesheet">
     </head>
     <style>
+        .btn-circle.btn-xl {
+            width: 100px;
+            height: 100px;
+            padding: 10px 16px;
+            border-radius: 35px;
+            font-size: 24px;
+            line-height: 1.33;
+            
+        }
+
+        .btn-circle {
+            width: 50px;
+            height: 50px;
+            padding: 6px 0px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 12px;
+            line-height: 1.42857;
+        }
+
         .shadow{
             text-shadow: 6px 4px 5px #800000;
 

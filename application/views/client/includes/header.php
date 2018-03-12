@@ -16,7 +16,7 @@
         <link rel = "stylesheet" href ="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
         <!-- JQUERY -->
         <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-
+        <link href="<?= base_url() ?>assets/bootstrap-datepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
         <link rel="stylesheet" href="<?= base_url() ?>assets/user/custom/css/styles.css">
     </head>
     <style>
@@ -40,6 +40,35 @@
             margin-top:10px;
             border-radius: 10px;
         }
+        .options{
+            margin-top:100px;
+        }
+        .btn-options{
+            height:300px;
+            width:300px;
+
+        }
+        .btn-options:hover{
+            opacity:10;
+        }
+        .icon-option{
+            height:100px;
+            opacity:0.8;
+            -webkit-transition: all 1s ease; /* Safari and Chrome */
+            -moz-transition: all 1s ease; /* Firefox */
+            -ms-transition: all 1s ease; /* IE 9 */
+            -o-transition: all 1s ease; /* Opera */
+            transition: all 1s ease;
+        }
+        .icon-option:hover{
+            opacity:10;
+            -webkit-transform:scale(1.25); /* Safari and Chrome */
+            -moz-transform:scale(1.25); /* Firefox */
+            -ms-transform:scale(1.25); /* IE 9 */
+            -o-transform:scale(1.25); /* Opera */
+            transform:scale(1.25);
+        }
+
     </style>
     <body class="sidebar-fixed header-fixed">
         <div class="page-wrapper">

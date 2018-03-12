@@ -77,7 +77,7 @@ class Login extends CI_Controller {
                         $this->session->set_userdata('userid', $accountDetailsClient->client_id);
                         $this->session->set_userdata('current_user', $accountDetailsClient);
                         $this->session->set_userdata('user_access', "Client");
-                        redirect(base_url() . 'client/');
+                        redirect(base_url() . 'Client/');
                     }
                 }
             }
