@@ -37,4 +37,12 @@ class Pending_request extends CI_Controller {
         $this->load->view("event_planner/pending_request/main");
         $this->load->view("event_planner/includes/footer");
     }
+    
+    public function reject_pending_transaction(){
+        $transaction_id = $this->uri->segment(3);
+    }
+    
+    public function accept_pending_transaction(){
+        $transaction_id = $this->uri->segment(3);
+    }
 }
