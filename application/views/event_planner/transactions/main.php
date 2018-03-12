@@ -117,7 +117,6 @@ PACKAGES
                             <table class="table table-striped datatable-class">
                                 <thead>
                                     <tr>
-                                        
                                         <th>Client</th>
                                         <th>Availed Package</th>
                                         <th>Received Payment</th>
