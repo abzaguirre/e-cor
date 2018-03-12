@@ -112,9 +112,10 @@ class Transaction_model extends CI_Model {
         $this->db->join($join4, $on4, "left outer");
 
         $this->db->where(array("transaction.client_id" => $client));
-        $this->db->where(array("transaction_isActive" => 1));
+        $this->db->where(array("transaction_isActive" => 0));
         $this->db->where(array("transaction_isAccept" => 0));
         $this->db->where(array("transaction_isDone" => 0));
+        $this->db->where(array("transaction_isRejected" => 1));
 
         $query = $this->db->get($table);
         return ($query->num_rows() > 0 ) ? $query->result() : FALSE;
