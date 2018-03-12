@@ -92,6 +92,7 @@ class ClientTransactions extends CI_Controller {
         $transactionsActive = $this->Transaction_model->get_transactions_active_client($this->session->userdata("userid"));
         $data = array(
             'transaction_isDone' => 1,
+            'transaction_finished_at' => time(),
         );
         if ($this->Transaction_model->edit_transaction($data, array('transaction_id' => $trans_id))) {
             $this->session->set_flashdata("cancel", "The schedule has been done.");

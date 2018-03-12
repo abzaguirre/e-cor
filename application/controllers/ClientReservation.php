@@ -22,11 +22,20 @@ class ClientReservation extends CI_Controller {
     }
 
     public function index() {
+        $pending = $this->Transaction_model->get_pending_transactions_client($this->session->userdata("userid"));
+       
+        $transactionsActive = $this->Transaction_model->get_transactions_active_client($this->session->userdata("userid"));
+//        echo "<pre>";
+//        print_r($transactionsActive);
+//        echo "</pre>";
+//        die;
         $ep = $this->List_model->fetch("event_planner");
         $current_client = $this->Client_model->get_client(array("client_id" => $this->session->userdata("userid")))[0];
         $data = array(
             //-- DATAS
             "ep" => $ep,
+            "pending" => $pending,
+            "transactionsActive" => $transactionsActive,
             //-- NAV INFO --
             "title" => "E-Cor | $current_client->client_username",
             "current_ep" => $current_client,
@@ -71,7 +80,8 @@ class ClientReservation extends CI_Controller {
                     'transaction_isActive' => 0,
                     'transaction_isDone' => 0,
                     'transaction_isAccept' => 0,
-                    'transaction_address' => $this->input->post('address')
+                    'transaction_address' => $this->input->post('address'),
+                    'transaction_added_at' => time(),
                 );
                 if ($this->Transaction_model->transaction_add($dataTrans)) {
                     redirect(base_url() . "ClientReservation/ep_list_exec/" . $this->input->post('title') . "/" . $schedule->schedule_id);
