@@ -117,17 +117,16 @@ PACKAGES
                             <table class="table table-striped datatable-class">
                                 <thead>
                                     <tr>
-                                        <th>Transaction ID</th>
+                                        
                                         <th>Client</th>
                                         <th>Availed Package</th>
-                                        <th>Cost</th>
+                                        <th>Received Payment</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach($transactionsInactive as $transaction):?>
                                         <?php $total_price = get_cost($transaction->packages_id)?>
                                         <tr>
-                                            <td><?= $transaction->transaction_id?></td>
                                             <td class="text-nowrap"><?= $transaction->client_firstname." ".$transaction->client_lastname?></td>
                                             <td><?= $transaction->packages_name?></td>
                                             <td>₱ <?= $total_price?></td>

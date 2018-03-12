@@ -15,7 +15,7 @@
             <li class="nav-title">Navigation</li>
 
             <li class="nav-item">
-                <a href="<?= base_url()?>Eventplanner" class="nav-link <?= base_url(uri_string()) == base_url()."eventplanner" ? "active":"" ;?>">
+                <a href="<?= base_url()?>Eventplanner" class="nav-link <?= base_url(uri_string()) == base_url()."Eventplanner" ? "active":"" ;?>">
                     <i class="icon icon-speedometer"></i> Dashboard
                 </a>
             </li>
