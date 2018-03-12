@@ -23,6 +23,7 @@ class Transaction_model extends CI_Model {
         $this->db->where(array("transaction_isAccept" => 1));
         $this->db->where(array("transaction_isPaid" => 1));
         $this->db->where(array("transaction_isDone" => 0));
+        $this->db->where(array("transaction_isRejected" => 0));
 
         $query = $this->db->get($table);
         return ($query->num_rows() > 0 ) ? $query->result() : FALSE;
@@ -49,6 +50,7 @@ class Transaction_model extends CI_Model {
         $this->db->where(array("transaction_isAccept" => 1));
         $this->db->where(array("transaction_isPaid" => 1));
         $this->db->where(array("transaction_isDone" => 1));
+        $this->db->where(array("transaction_isRejected" => 0));
 
         $query = $this->db->get($table);
         return ($query->num_rows() > 0 ) ? $query->result() : FALSE;
@@ -75,6 +77,7 @@ class Transaction_model extends CI_Model {
         $this->db->where(array("transaction_isAccept" => 0));
         $this->db->where(array("transaction_isPaid" => 0));
         $this->db->where(array("transaction_isDone" => 0));
+        $this->db->where(array("transaction_isRejected" => 0));
 
         $query = $this->db->get($table);
         return ($query->num_rows() > 0 ) ? $query->result() : FALSE;
