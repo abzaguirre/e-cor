@@ -67,6 +67,67 @@
      $('.form_datetime').datetimepicker('setEndDate', dt);
  });
 </script>
+
+<!-- GOOGLE MAPS-->
+<script>
+    //EMPTY ADDRESS INPUT
+    var map;
+    var map_data = document.getElementById('google-map');
+    function initialize() {
+        var address = map_data.dataset.address;
+        
+        // Set up the map
+        var mapOptions = {
+            zoom: 17,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            streetViewControl: false,
+        };
+        
+        //find map then put mapOptions 
+        map = new google.maps.Map(document.getElementById('google-map'), mapOptions);
+        
+        var geocoder = new google.maps.Geocoder();
+        
+        //load map
+        google.maps.event.addDomListener(window, 'load', initialize);
+        google.maps.event.addDomListener(window, 'load', get_latLng(geocoder, map));
+    }
+    
+    function get_latLng(geocoder, resultsMap){
+        var address = map_data.dataset.address;
+        geocoder.geocode({'address': address}, function(results, status) {
+          if (status === 'OK') {
+              
+            resultsMap.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+              map: resultsMap,
+              position: results[0].geometry.location,
+              title:address
+            });
+            
+          } else {
+            console.log('Geocode was not successful for the following reason: ' + status);
+          }
+        });
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyD1VJrwMKjjvTi626jR6pdoaNdIHKEdp0c&callback=initialize"></script>
+
+<!-- GEO COMPLETE -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/geocomplete/1.7.0/jquery.geocomplete.min.js"></script>
+<script>
+    $(function () {
+        $("#geocomplete").geocomplete({
+            map: "#google-map",
+            details: "form",
+            country: 'ph',
+        }).bind("geocode:result", function (event, result) {
+//            console.log("===== FOOTER =====");
+//            console.log(event);
+//            console.log(result);
+        });
+    });
+</script>
 <script src="<?= base_url() ?>assets/user/custom/js/carbon.js"></script>
 <script src="<?= base_url() ?>assets/user/custom/js/demo.js"></script>
 </body>
