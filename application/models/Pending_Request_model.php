@@ -4,7 +4,11 @@ class Pending_Request_model extends CI_Model {
     
     public function reject_pending_request($transaction_id){
         $data = array(
+            "transaction_isAccept" => 0,
+            "transaction_isActive" => 1,
+            "transaction_isPaid" => 0,
             "transaction_isRejected" => 1,
+            "transaction_isDone" => 0
         );
         $table = "transaction";
         $this->db->where(array("transaction_id" => $transaction_id));
@@ -14,7 +18,11 @@ class Pending_Request_model extends CI_Model {
     
     public function accept_pending_request($transaction_id){
         $data = array(
-            "transaction_isAccept" => 1
+            "transaction_isAccept" => 1,
+            "transaction_isActive" => 1,
+            "transaction_isPaid" => 0,
+            "transaction_isRejected" => 0,
+            "transaction_isDone" => 0
         );
         
         $table = "transaction";
