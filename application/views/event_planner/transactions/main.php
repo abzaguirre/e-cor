@@ -65,6 +65,7 @@ PACKAGES
             </div>
         </div>
     </div>
+    <?php if (!empty($transactionsInactive)): ?>
     <div class = "row">
         <div class="col-md-12">
             <div class = "card">
@@ -72,42 +73,36 @@ PACKAGES
                     <strong>Recently Finished Transaction</strong>
                 </div>
                 <div class = "card-body">
-                    <?php if (!empty($transactionsInactive)): ?>
-                        <div class="table-responsive">
-                            <table class="table table-striped datatable-class">
-                                <thead>
+                    <div class="table-responsive">
+                        <table class="table table-striped datatable-class">
+                            <thead>
+                                <tr>
+                                    <th>Client</th>
+                                    <th>Availed Package</th>
+                                    <th>Received Payment</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($transactionsInactive as $transaction): ?>
+                                    <?php $total_price = get_cost($transaction->packages_id) ?>
                                     <tr>
-                                        <th>Client</th>
-                                        <th>Availed Package</th>
-                                        <th>Received Payment</th>
-                                        <th>Actions</th>
+                                        <td class="text-nowrap"><?= $transaction->client_firstname . " " . $transaction->client_lastname ?></td>
+                                        <td><?= $transaction->packages_name ?></td>
+                                        <td>₱ <?= $total_price ?></td>
+                                        <td class = "text-center">
+                                            <div class="btn-group" role="group" aria-label="Actions">
+                                                <a href = "<?= base_url() ?>transactions/show_transaction_exec/<?= $transaction->transaction_id ?>" class="btn btn-info">Show Information</a>
+                                            </div>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($transactionsInactive as $transaction): ?>
-                                        <?php $total_price = get_cost($transaction->packages_id) ?>
-                                        <tr>
-                                            <td class="text-nowrap"><?= $transaction->client_firstname . " " . $transaction->client_lastname ?></td>
-                                            <td><?= $transaction->packages_name ?></td>
-                                            <td>₱ <?= $total_price ?></td>
-                                            <td class = "text-center">
-                                                <div class="btn-group" role="group" aria-label="Actions">
-                                                    <a href = "<?= base_url() ?>transactions/show_transaction_exec/<?= $transaction->transaction_id ?>" class="btn btn-info">Show Information</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    <?php else: ?>
-                        <div class = "text-center">
-                            <i class = "fa fa-exclamation-circle fa-5x"></i><br/>
-                            <h3>No Pending Requests</h3>
-                        </div>
-                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <?php endif; ?>
 </div>

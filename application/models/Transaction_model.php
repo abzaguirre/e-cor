@@ -2,7 +2,7 @@
 
 class Transaction_model extends CI_Model {
 
-    public function get_transaction($transaction_id) {
+    public function get_transaction($transaction_id = NULL) {
         $table = "transaction";
         $join = "event_planner";
         $on = "transaction.event_planner_id = event_planner.event_planner_id";
@@ -18,8 +18,10 @@ class Transaction_model extends CI_Model {
         $this->db->join($join3, $on3, "left outer");
         $this->db->join($join4, $on4, "left outer");
 
-        $this->db->where(array("transaction_id" => $transaction_id));
-
+        if(!empty($where)){
+            $this->db->where(array("transaction_id" => $transaction_id));   
+        }
+        
         $query = $this->db->get($table);
         return ($query->num_rows() > 0 ) ? $query->result() : FALSE;
     }
