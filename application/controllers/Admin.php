@@ -8,15 +8,18 @@ class Admin extends CI_Controller {
             //user is not yet logged in
             $this->session->set_flashdata("err_4", "Login First!");
             redirect(base_url() . 'login/');
-        } else {
+        }else {
             $current_user = $this->session->userdata("current_user");
             if ($this->session->userdata("user_access") == "Client") {
-                //USER!
-                //Do nothing!
-            } else if ($this->session->userdata("user_access") == "admin") {
-                //ADMIN!
-                $this->session->set_flashdata("err_5", "You are currently logged in as " . $current_user->event_planner_firstname . " " . $current_user->event_planner_lastname);
-                redirect(base_url() . "Eventplanner");
+                //CLIENT
+                $this->session->set_flashdata("err_5", "You are currently logged in as " . $current_user->client_firstname . " " . $current_user->client_lastname);
+                redirect(base_url() . "Client");
+            }else if($this->session->userdata("user_access") == "Admin"){
+                //ADMIN
+            }else if ($this->session->userdata("user_access") == "Event Planner") {
+                //EVENT PLANNER
+                $this->session->set_flashdata("err_5", "You are currently logged in as " . $current_user->event_planner . " " . $current_user->event_planner_lastname);
+                redirect(base_url() . "EventPlanner");
             }
         }
     }
@@ -26,10 +29,10 @@ class Admin extends CI_Controller {
         $data = array(
             //-- DUMMY DATA --
             //-- NAV INFO --
-            "title" => "E-Cor | $current_admin->amdin_username",
+            "title" => "E-Cor | $current_admin->admin_username",
             "current_ep" => $current_admin,
-            "client_username" => "$current_admin->admin_username",
-            "client_picture" => "$current_admin->admin_picture"
+            "admin_username" => "$current_admin->admin_username",
+            "admin_picture" => "$current_admin->admin_picture"
         );
 
         $this->load->view("admin/includes/header", $data);

@@ -11,12 +11,15 @@ class Client extends CI_Controller {
         } else {
             $current_user = $this->session->userdata("current_user");
             if ($this->session->userdata("user_access") == "Client") {
-                //USER!
-                //Do nothing!
-            } else if ($this->session->userdata("user_access") == "admin") {
-                //ADMIN!
+                //CLIENT
+            }else if($this->session->userdata("user_access") == "Admin"){
+                //ADMIN
+                $this->session->set_flashdata("err_5", "You are currently logged in as " . $current_user->admin_firstname . " " . $current_user->admin_lastname);
+                redirect(base_url() . "Admin");
+            }else if ($this->session->userdata("user_access") == "Event Planner") {
+                //EVENT PLANNER
                 $this->session->set_flashdata("err_5", "You are currently logged in as " . $current_user->event_planner_firstname . " " . $current_user->event_planner_lastname);
-                redirect(base_url() . "Eventplanner");
+                redirect(base_url() . "EventPlanner");
             }
         }
     }

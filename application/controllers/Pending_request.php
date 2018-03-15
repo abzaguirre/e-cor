@@ -10,12 +10,15 @@ class Pending_request extends CI_Controller {
         } else {
             $current_user = $this->session->userdata("current_user");
             if ($this->session->userdata("user_access") == "Client") {
-                //USER!
+                //CLIENT
                 $this->session->set_flashdata("err_5", "You are currently logged in as " . $current_user->client_firstname . " " . $current_user->client_lastname);
                 redirect(base_url() . "Client");
-            } else if ($this->session->userdata("user_access") == "admin") {
-                //ADMIN!
-                //Do nothing!
+            }else if($this->session->userdata("user_access") == "Admin"){
+                //ADMIN
+                $this->session->set_flashdata("err_5", "You are currently logged in as " . $current_user->admin_firstname . " " . $current_user->admin_lastname);
+                redirect(base_url() . "Admin");
+            }else if ($this->session->userdata("user_access") == "Event Planner") {
+                //EVENT PLANNER
             }
         }
     }
