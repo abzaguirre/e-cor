@@ -19,7 +19,10 @@
         <!-- JQUERY -->
         <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
         <link href="<?= base_url() ?>assets/bootstrap-datepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="<?= base_url() ?>assets/user/custom/css/styles.css">
+        <link rel="stylesheet" href="<?= base_url() ?>assets/user/custom/css/styles.css"> 
+        <!-- Bootstrap File Upload with preview -->
+        <link rel="stylesheet" type="text/css" href="https://unpkg.com/file-upload-with-preview/dist/file-upload-with-preview.min.css">
+
     </head>
     <style>
         .breadcrumb{
