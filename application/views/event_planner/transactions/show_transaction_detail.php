@@ -79,10 +79,7 @@ SHOW TRANSACTION DETAIL
                     <center class = "mt-5">
                         <h5>Event Location</h5>
                         <i class = "text-muted"><?= $fetched_transaction[0]->transaction_address?></i>
-                        
                         <div id = "google-map" data-address = "<?= $fetched_transaction[0]->transaction_address?>" class = "border " style="height:100%; min-height:350px;"></div>
-                        
-                          
                     </center>
                     <center class = "mt-5">
                         <h5>Reserved at</h5>
