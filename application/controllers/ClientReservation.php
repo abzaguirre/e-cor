@@ -3,7 +3,6 @@
 class ClientReservation extends CI_Controller {
 
     function __construct() {
-        parent::__construct();
         if ($this->session->has_userdata('isloggedin') == FALSE) {
             //user is not yet logged in
             $this->session->set_flashdata("err_4", "Login First!");
@@ -11,19 +10,22 @@ class ClientReservation extends CI_Controller {
         } else {
             $current_user = $this->session->userdata("current_user");
             if ($this->session->userdata("user_access") == "Client") {
-                //USER!
-                //Do nothing!
-            } else if ($this->session->userdata("user_access") == "admin") {
-                //ADMIN!
+                //CLIENT
+            } else if ($this->session->userdata("user_access") == "Admin") {
+                //ADMIN
+                $this->session->set_flashdata("err_5", "You are currently logged in as " . $current_user->admin_firstname . " " . $current_user->admin_lastname);
+                redirect(base_url() . "Admin");
+            } else if ($this->session->userdata("user_access") == "Event Planner") {
+                //EVENT PLANNER
                 $this->session->set_flashdata("err_5", "You are currently logged in as " . $current_user->event_planner_firstname . " " . $current_user->event_planner_lastname);
-                redirect(base_url() . "Eventplanner");
+                redirect(base_url() . "EventPlanner");
             }
         }
     }
 
     public function index() {
         $pending = $this->Transaction_model->get_pending_transactions_client($this->session->userdata("userid"));
-       
+
         $transactionsActive = $this->Transaction_model->get_transactions_active_client($this->session->userdata("userid"));
 //        echo "<pre>";
 //        print_r($transactionsActive);
@@ -129,12 +131,20 @@ class ClientReservation extends CI_Controller {
     public function packages_exec() {
         $this->session->set_userdata("ep_id", $this->uri->segment(3));
         $this->session->set_userdata("schedule_id", $this->uri->segment(4));
+        $ep = $this->List_model->fetch("transaction", array('client_id' => $this->session->userdata("userid"), 'schedule_id' => $this->uri->segment(4)))[0];
+//        echo "<pre>";
+//        print_r($ep);
+//        echo "</pre>";
+//        die;
         $data = array(
             'event_planner_id' => $this->uri->segment(3),
         );
-
-        if ($this->List_model->update_transaction($data, array("client_id" => $this->session->userdata("userid"), "schedule_id" => $this->uri->segment(4)))) {
+        if ($ep->event_planner_id == 1) {
             redirect(base_url() . "ClientReservation/packages");
+        } else {
+            if ($this->List_model->update_transaction($data, array("client_id" => $this->session->userdata("userid"), "schedule_id" => $this->uri->segment(4)))) {
+                redirect(base_url() . "ClientReservation/packages");
+            }
         }
     }
 
@@ -185,10 +195,11 @@ class ClientReservation extends CI_Controller {
         $schedule_id = $this->session->userdata("schedule_id");
         $ep_id = $this->session->userdata("ep_id");
         $ep = $this->List_model->fetch("event_planner", array("event_planner_id" => $ep_id))[0];
+        $trans = $this->List_model->fetch("transaction", array('client_id' => $this->session->userdata("userid"), 'schedule_id' => $schedule_id))[0];
+
 //        echo "<pre>";
-//        print_r($ep);
+//        print_r($trans);
 //        echo "</pre>";
-//        echo $ep->event_planner_firstname;
 //        die;
         $data = array(
             'packages_id' => $package_id,
@@ -197,9 +208,15 @@ class ClientReservation extends CI_Controller {
 //        $this->List_model->update_transaction($data, array("client_id" => $this->session->userdata("userid"), "schedule_id" => $schedule_id));
 //        echo $this->db->last_query();
 //        die;
-        if ($this->List_model->update_transaction($data, array("client_id" => $this->session->userdata("userid"), "schedule_id" => $schedule_id))) {
-            $this->session->set_flashdata("reserve", "Your request has been send to " . $ep->event_planner_firstname . " " . $ep->event_planner_lastname . ". Wait for the event planner to accept your request.");
+        $this->List_model->update_transaction($data, array("client_id" => $this->session->userdata("userid"), "schedule_id" => $schedule_id));
+
+        if ($trans->packages_id == 1) {
             redirect(base_url() . "ClientTransactions");
+        } else {
+            if ($this->List_model->update_transaction($data, array("client_id" => $this->session->userdata("userid"), "schedule_id" => $schedule_id))) {
+                $this->session->set_flashdata("reserve", "Your request has been send to " . $ep->event_planner_firstname . " " . $ep->event_planner_lastname . ". Wait for the event planner to accept your request.");
+                redirect(base_url() . "ClientTransactions");
+            }
         }
     }
 

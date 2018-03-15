@@ -21,21 +21,14 @@
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-header">Account</div>
 
-                <a href="#" class="dropdown-item">
-                    <i class="fa fa-user"></i> Profile
-                </a>
-
-                <a href="#" class="dropdown-item">
-                    <i class="fa fa-envelope"></i> Messages
+                <a href="<?= base_url() ?>EventplannerProfile" class="dropdown-item">
+                    <i class="fa fa-user" ></i> Profile
                 </a>
 
                 <div class="dropdown-header">Settings</div>
 
-                <a href="#" class="dropdown-item">
-                    <i class="fa fa-bell"></i> Notifications
-                </a>
 
-                <a href="#" class="dropdown-item">
+                <a href="<?= base_url() ?>EventplannerSettings" class="dropdown-item">
                     <i class="fa fa-wrench"></i> Settings
                 </a>
 
