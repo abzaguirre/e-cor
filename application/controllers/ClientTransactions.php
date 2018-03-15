@@ -19,7 +19,7 @@ class ClientTransactions extends CI_Controller {
             }else if ($this->session->userdata("user_access") == "Event Planner") {
                 //EVENT PLANNER
                 $this->session->set_flashdata("err_5", "You are currently logged in as " . $current_user->event_planner_firstname . " " . $current_user->event_planner_lastname);
-                redirect(base_url() . "EventPlanner");
+                redirect(base_url() . "Eventplanner");
             }
         }
     }

@@ -16,7 +16,7 @@
 
             <li class="nav-item">
                 <a href="<?= base_url()?>Admin" class="nav-link <?= base_url(uri_string()) == base_url()."Admin" ? "active":"" ;?>">
-                    <i class="icon icon-speedometer"></i> Dashboard
+                    <i class="icon icon-credit-card"></i> Payment Management
                 </a>
             </li>
         </ul>

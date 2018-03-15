@@ -19,15 +19,17 @@ class Admin extends CI_Controller {
             }else if ($this->session->userdata("user_access") == "Event Planner") {
                 //EVENT PLANNER
                 $this->session->set_flashdata("err_5", "You are currently logged in as " . $current_user->event_planner . " " . $current_user->event_planner_lastname);
-                redirect(base_url() . "EventPlanner");
+                redirect(base_url() . "Eventplanner");
             }
         }
     }
 
     public function index() {
         $current_admin = $this->Admin_model->get_admin(array("admin_id" => $this->session->userdata("userid")))[0];
+        $unpaid_transactions = $this->Transaction_model->get_unpaid_transactions();
+        
         $data = array(
-            //-- DUMMY DATA --
+            "unpaid_transactions" => $unpaid_transactions,
             //-- NAV INFO --
             "title" => "E-Cor | $current_admin->admin_username",
             "current_ep" => $current_admin,
@@ -41,5 +43,40 @@ class Admin extends CI_Controller {
         $this->load->view("admin/dashboard/main");
         $this->load->view("admin/includes/footer");
     }
-
+    
+    public function show_transaction_exec(){
+        $this->session->set_userdata("transaction_id",$this->uri->segment(3));
+        redirect(base_url()."admin/show_transaction");
+    }
+    
+    public function show_transaction(){
+        $transaction_id = $this->session->userdata("transaction_id");
+        $transaction = $this->Transaction_model->get_transaction($transaction_id);
+        
+        $admin = $this->Admin_model->get_admin(array("admin_id" => $this->session->userdata("userid")))[0];
+        $data = array(
+            "fetched_transaction" => $transaction,
+            //-- NAV INFO --
+            "title" => $admin->admin_username,
+            "current_ep" => $admin,
+            "admin_username" => "$admin->admin_username",
+            "admin_picture" => "$admin->admin_picture"
+            );
+        $this->load->view("admin/includes/header", $data);
+        $this->load->view("admin/navigation/nav_header");
+        $this->load->view("admin/navigation/nav_side");
+        $this->load->view("admin/dashboard/show_transaction_detail");
+        $this->load->view("admin/includes/footer");
+        
+    }
+    
+    public function payment_exec(){
+        $this->session->set_userdata("transaction_id",$this->uri->segment(3));
+        redirect(base_url()."admin/payment");
+    }
+    
+    public function payment(){
+        //DO FUNCTION FOR PAYMENT
+    }
+    
 }
