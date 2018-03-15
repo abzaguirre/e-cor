@@ -4,8 +4,8 @@ EVENT PLANNER DASHBOARD
 
 <div class="content">
     <div class="container-fluid">
+        <?php include_once (APPPATH . "views/show_error/show_error.php"); ?>
         <?php if (empty($specialty)): ?>
-            <?php include_once (APPPATH . "views/show_error/show_error.php"); ?>
             <!--ALERT-->
             <div class="alert alert-info" role="alert">
                 <h2 class="alert-heading">You are a new Event Planner to E-Cor!</h2>
