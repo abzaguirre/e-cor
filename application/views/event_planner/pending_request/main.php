@@ -33,9 +33,10 @@ PENDING REQUEST
                                             <td><?= $transaction->packages_name?></td>
                                             <td>₱ <?= $total_price?></td>
                                             <td class="text-center">
-                                                <div class="btn-group" role="group" aria-label="Basic example">
-                                                    <a href = "<?= base_url()?>pending_request/reject_pending_transaction/<?= $transaction->transaction_id?>" class="btn btn-danger">Reject</a>
-                                                    <a href = "<?= base_url()?>pending_request/accept_pending_transaction/<?= $transaction->transaction_id?>" class="btn btn-success">Accept</a>
+                                                <div class="btn-group" role="group" aria-label="Actions">
+                                                    <a href = "<?= base_url()?>pending_request/reject_pending_transaction/<?= $transaction->transaction_id?>"    class="btn btn-danger">Reject</a>
+                                                    <a href = "<?= base_url()?>pending_request/show_pending_transaction_exec/<?= $transaction->transaction_id?>" class="btn btn-info">Show Information</a>
+                                                    <a href = "<?= base_url()?>pending_request/accept_pending_transaction/<?= $transaction->transaction_id?>"    class="btn btn-success">Accept</a>
                                                 </div>
                                             </td>
                                         </tr>

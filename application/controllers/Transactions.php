@@ -10,17 +10,20 @@ class Transactions extends CI_Controller {
         } else {
             $current_user = $this->session->userdata("current_user");
             if ($this->session->userdata("user_access") == "Client") {
-                //USER!
+                //CLIENT
                 $this->session->set_flashdata("err_5", "You are currently logged in as " . $current_user->client_firstname . " " . $current_user->client_lastname);
                 redirect(base_url() . "Client");
-            } else if ($this->session->userdata("user_access") == "admin") {
-                //ADMIN!
-                //Do nothing!
+            }else if($this->session->userdata("user_access") == "Admin"){
+                //ADMIN
+                $this->session->set_flashdata("err_5", "You are currently logged in as " . $current_user->admin_firstname . " " . $current_user->admin_lastname);
+                redirect(base_url() . "Admin");
+            }else if ($this->session->userdata("user_access") == "Event Planner") {
+                //EVENT PLANNER
             }
         }
     }
     public function index(){
-        $transactionsActive = $this->Transaction_model->get_transactions_active($this->session->userdata("userid"));
+        $transactionsActive = $this->Transaction_model->get_accepted_transaction($this->session->userdata("userid"));
         $transactionsInactive = $this->Transaction_model->get_transactions_inactive($this->session->userdata("userid"));
         
         $ep_id = $this->session->userdata("userid");
@@ -29,7 +32,7 @@ class Transactions extends CI_Controller {
         $current_ep = $this->Eventplanner_model->get_ep(array("event_planner_id" => $this->session->userdata("userid")))[0];
         $data = array(
             
-            "transactionsActive" => $transactionsActive,
+            "acceptedTransaction" => $transactionsActive,
             "transactionsInactive" => $transactionsInactive,
             "packages" => $packages,
             
@@ -54,5 +57,31 @@ class Transactions extends CI_Controller {
         $this->Transaction_model->edit_transaction($data, array("transaction_id" => $transaction_id));
         $this->session->set_flashdata("show_flash_success", "Successfully cancelled the transaction");
         redirect(base_url()."transactions");
+    }
+    
+    public function show_transaction_exec(){
+        $this->session->set_userdata("transaction_id",$this->uri->segment(3));
+        redirect(base_url()."transactions/show_transaction");
+    }
+    
+    public function show_transaction(){
+        $transaction_id = $this->session->userdata("transaction_id");
+        $transaction = $this->Transaction_model->get_transaction($transaction_id);
+        
+        $current_ep = $this->Eventplanner_model->get_ep(array("event_planner_id" => $this->session->userdata("userid")))[0];
+        $data = array(
+            "fetched_transaction" => $transaction,
+            //-- NAV INFO --
+            "title" => $current_ep->event_planner_username,
+            "current_ep" => $current_ep,
+            "ep_username" => "$current_ep->event_planner_username",
+            "ep_picture" => "$current_ep->event_planner_picture"
+            );
+        $this->load->view("event_planner/includes/header", $data);
+        $this->load->view("event_planner/navigation/nav_header");
+        $this->load->view("event_planner/navigation/nav_side");
+        $this->load->view("event_planner/transactions/show_transaction_detail");
+        $this->load->view("event_planner/includes/footer");
+        
     }
 }

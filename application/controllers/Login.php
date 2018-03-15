@@ -21,14 +21,14 @@ class Login extends CI_Controller {
     }
 
     public function login_exec() {
-
+        //Event Planner is loggin in    
         $dataEventPlanner = array(
             'event_planner_username' => $this->input->post('username'),
             'event_planner_password' => sha1($this->input->post('password')),
         );
-
         $accountDetailsEventPlanner = $this->Login_model->getinfo("event_planner", $dataEventPlanner);
 
+        //Client is loggin in
         $dataClient = array(
             'client_username' => $this->input->post('username'),
             'client_password' => sha1($this->input->post('password')),
@@ -36,13 +36,22 @@ class Login extends CI_Controller {
 
         $accountDetailsClient = $this->Login_model->getinfo("client", $dataClient);
 
-        if (!$accountDetailsClient && !$accountDetailsEventPlanner) {
+        //ADmin is loggin in
+        $dataAdmin = array(
+            'admin_username' => $this->input->post('username'),
+            'admin_password' => sha1($this->input->post('password')),
+        );
+
+        $accountDetailsAdmin = $this->Login_model->getinfo("admin", $dataAdmin);
+        
+        if (!$accountDetailsClient && !$accountDetailsEventPlanner && !$accountDetailsAdmin) {
             //OOPS no accounts like that!
             $this->session->set_flashdata("err_1", "Invalid Account");
             redirect(base_url() . "login");
         } else {
             $accountDetailsEventPlanner = $accountDetailsEventPlanner[0];
             $accountDetailsClient = $accountDetailsClient[0];
+            $accountDetailsAdmin = $accountDetailsAdmin[0];
             if ($accountDetailsEventPlanner->event_planner_username == $this->input->post('username')) {
                
                 if ($accountDetailsEventPlanner->event_planner_status == 0) {
@@ -62,7 +71,15 @@ class Login extends CI_Controller {
                         redirect(base_url() . 'Eventplanner/');
                     }
                 }
-            } else {
+            }
+            else if ($accountDetailsAdmin->admin_username == $this->input->post('username')) {
+                $this->session->set_userdata('isloggedin', true);
+                $this->session->set_userdata('userid', $accountDetailsAdmin->admin_id);
+                $this->session->set_userdata('current_user', $accountDetailsAdmin);
+                $this->session->set_userdata('user_access', "Admin");
+                redirect(base_url() . 'Admin/');
+            }
+            else {
                 if ($accountDetailsClient->client_status == 0) {
                     //OOPS user is blocked by the admin. Please contact the admin.
                     $this->session->set_flashdata("err_2", "Account is blocked. Please contact the administrator to reactivate your account.");
