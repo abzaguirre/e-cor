@@ -76,7 +76,9 @@ class Admin extends CI_Controller {
     }
     
     public function payment(){
-        //DO FUNCTION FOR PAYMENT
+        $transaction_id = $this->session->userdata("transaction_id");
+        $this->Admin_model->payment($transaction_id);
+        $this->session->set_flashdata("show_flash_success", "Transaction is now paid.");
     }
     
 }

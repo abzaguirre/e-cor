@@ -40,7 +40,7 @@ ADMIN DASHBOARD
                                                 <td class = "text-center">
                                                     <div class="btn-group" role="group" aria-label="Actions">
                                                         <a href = "<?= base_url() ?>Admin/show_transaction_exec/<?= $transaction->transaction_id ?>" class="btn btn-info">Show Information</a>
-                                                        <a href = "<?= base_url() ?>Admin/payment_exec/<?= $transaction->transaction_id ?>" class="btn btn-success">Payment</a>
+                                                        <a href = "#" class="btn btn-success" data-toggle="modal" data-target="#payment" >Payment</a>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -51,6 +51,27 @@ ADMIN DASHBOARD
                         <?php endif; ?>
                     </div>  
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="payment" tabindex="-1" role="dialog" aria-labelledby="paymentLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="paymentLabel">Payment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Please make sure that the client had paid you the right amount before clicking the "Paid" button. 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <a href = "<?= base_url() ?>Admin/payment_exec/<?= $transaction->transaction_id ?>" class="btn btn-success">Paid</a>              
             </div>
         </div>
     </div>
