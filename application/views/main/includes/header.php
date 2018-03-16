@@ -60,7 +60,7 @@
             border-radius: 35px;
             font-size: 24px;
             line-height: 1.33;
-            
+
         }
 
         .btn-circle {
@@ -191,6 +191,9 @@
                             </li>
                             <li class="dropdown">
                                 <a class="section-scroll" href="#contact">Contact Us</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="<?= base_url() ?>register/">Register</a>
                             </li>
                             <li class="dropdown">
                                 <a href="<?= base_url() ?>login/">Login</a>

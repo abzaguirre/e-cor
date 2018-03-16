@@ -31,5 +31,74 @@
 
         <link rel="stylesheet" href="<?= base_url() ?>assets/user/custom/css/styles.css">
     </head>
+    <script  type="text/javascript">
+        $(document).ready(function () {
+            var january = "<?php echo $januaryCount ?>";
+            var february = "<?php echo $februaryCount ?>";
+            var march = "<?php echo $marchCount ?>";
+            var april = "<?php echo $aprilCount ?>";
+            var may = "<?php echo $mayCount ?>";
+            var june = "<?php echo $juneCount ?>";
+            var july = "<?php echo $julyCount ?>";
+            var august = "<?php echo $augustCount ?>";
+            var september = "<?php echo $septemberCount ?>";
+            var october = "<?php echo $octoberCount ?>";
+            var november = "<?php echo $novemberCount ?>";
+            var december = "<?php echo $decemberCount ?>";
+            // Chart.js scripts
+            // -- Set new default font family and font color to mimic Bootstrap's default styling
+
+            var ctx = document.getElementById("myAreaChart");
+            var myLineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+                    datasets: [{
+                            label: "Transactions",
+                            lineTension: 0.3,
+                            backgroundColor: "rgba(2,117,216,0.2)",
+                            borderColor: "rgba(2,97,116,1)",
+                            pointRadius: 5,
+                            pointBackgroundColor: "rgba(2,107,116,1)",
+                            pointBorderColor: "rgba(255,255,255,0.8)",
+                            pointHoverRadius: 5,
+                            pointHoverBackgroundColor: "rgba(2,117,216,1)",
+                            pointHitRadius: 20,
+                            pointBorderWidth: 2,
+                            data: [january, february, march, april, may, june, july, august, september, october, november, december],
+                        }],
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                                time: {
+                                    unit: 'date'
+                                },
+                                gridLines: {
+                                    display: false
+                                },
+                                ticks: {
+                                    maxTicksLimit: 12
+                                }
+                            }],
+                        yAxes: [{
+                                ticks: {
+                                    min: 0,
+                                    max: 10,
+                                    maxTicksLimit: 5
+                                },
+                                gridLines: {
+                                    color: "rgba(0, 0, 0, .125)",
+                                }
+                            }],
+                    },
+                    legend: {
+                        display: false
+                    }
+                }
+            });
+        });
+
+    </script>
     <body class="sidebar-fixed header-fixed">
         <div class="page-wrapper">

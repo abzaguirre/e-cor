@@ -88,7 +88,7 @@
                     <div class="form-check">
                         <input class="form-check-input <?= !empty(form_error("accept")) ? "is-invalid" : ""; ?>" style="margin-top:3px;" type="checkbox" name="accept" value="1">
                         <label class=" form-check-label">
-                            I agree to the <a href="#" style="color:blue;">Terms and Conditions.</a>
+                            I agree to the <a href="<?= base_url() ?>register/terms" style="color:blue;">Terms and Conditions.</a>
                         </label>
                     </div>
                     <div class="form-group">
