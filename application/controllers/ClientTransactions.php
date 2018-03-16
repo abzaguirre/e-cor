@@ -94,6 +94,7 @@ class ClientTransactions extends CI_Controller {
         $trans_id = $this->uri->segment(3);
         $transactionsActive = $this->Transaction_model->get_transactions_active_client($this->session->userdata("userid"));
         $data = array(
+            'transaction_isActive' => 0,
             'transaction_isDone' => 1,
             'transaction_finished_at' => time(),
         );
