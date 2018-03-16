@@ -33,4 +33,15 @@ class Eventplanner_model extends CI_Model {
         return $this->db->affected_rows();
     }
 
+    public function count_transactions($where = NULL) {
+        $table = "transaction";
+
+        $this->db->count_all_results($table);
+        if (!empty($where)) {
+            $this->db->where($where);
+        }
+        $this->db->from($table);
+        return $this->db->count_all_results();
+    }
+
 }

@@ -12,11 +12,11 @@ class Client extends CI_Controller {
             $current_user = $this->session->userdata("current_user");
             if ($this->session->userdata("user_access") == "Client") {
                 //CLIENT
-            }else if($this->session->userdata("user_access") == "Admin"){
+            } else if ($this->session->userdata("user_access") == "Admin") {
                 //ADMIN
                 $this->session->set_flashdata("err_5", "You are currently logged in as " . $current_user->admin_firstname . " " . $current_user->admin_lastname);
                 redirect(base_url() . "Admin");
-            }else if ($this->session->userdata("user_access") == "Event Planner") {
+            } else if ($this->session->userdata("user_access") == "Event Planner") {
                 //EVENT PLANNER
                 $this->session->set_flashdata("err_5", "You are currently logged in as " . $current_user->event_planner_firstname . " " . $current_user->event_planner_lastname);
                 redirect(base_url() . "Eventplanner");
@@ -25,9 +25,17 @@ class Client extends CI_Controller {
     }
 
     public function index() {
+        $packages_count = $this->Client_model->count_packages();
+        $ep_count = $this->Client_model->count_ep();
+        $transactions = $this->Client_model->count_transactions(array("client_id" => $this->session->userdata("userid")));
+
         $current_client = $this->Client_model->get_client(array("client_id" => $this->session->userdata("userid")))[0];
         $data = array(
             //-- DUMMY DATA --
+            'current_client' => $current_client,
+            "packages_count" => $packages_count,
+            "transactions" => $transactions,
+            "ep_count" => $ep_count,
             //-- NAV INFO --
             "title" => "E-Cor | $current_client->client_username",
             "current_ep" => $current_client,

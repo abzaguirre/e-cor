@@ -21,26 +21,14 @@
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
                     <h2 class="module-title font-alt">Our Services</h2>
-                    <div class="module-subtitle font-serif">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et nisl lorem. Duis eu nibh vel velit lobortis gravida vel at purus. Etiam lacus dui, molestie sed eleifend in, luctus nec quam.</div>
+                    <div class="module-subtitle font-serif">Below are the listed services of the system, E-Cor.</div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6 col-md-3 col-lg-3">
                     <div class="alt-features-item">
-                        <div class="alt-features-icon"><span class="icon-calendar"></span></div>
-                        <h3 class="alt-features-title font-alt">Events</h3>A wonderful serenity has taken possession of my entire soul like these sweet mornings.
-                    </div>
-                    <div class="alt-features-item">
-                        <div class="alt-features-icon"><span class="icon-tools-2"></span></div>
-                        <h3 class="alt-features-title font-alt">Development</h3>A wonderful serenity has taken possession of my entire soul like these sweet mornings.
-                    </div>
-                    <div class="alt-features-item">
-                        <div class="alt-features-icon"><span class="icon-target"></span></div>
-                        <h3 class="alt-features-title font-alt">Marketing</h3>A wonderful serenity has taken possession of my entire soul like these sweet mornings.
-                    </div>
-                    <div class="alt-features-item">
-                        <div class="alt-features-icon"><span class="icon-tools"></span></div>
-                        <h3 class="alt-features-title font-alt">Design</h3>A wonderful serenity has taken possession of my entire soul like these sweet mornings.
+                        <div class="alt-features-icon"><span class="fa fa-user-circle-o"></span></div>
+                        <h3 class="alt-features-title font-alt">Choose Event Planner</h3>You can choose available event planner that will organize your event.
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6 hidden-xs hidden-sm">
@@ -48,21 +36,10 @@
                 </div>
                 <div class="col-sm-6 col-md-3 col-lg-3">
                     <div class="alt-features-item">
-                        <div class="alt-features-icon"><span class="icon-camera"></span></div>
-                        <h3 class="alt-features-title font-alt">Photography</h3>A wonderful serenity has taken possession of my entire soul like these sweet mornings.
+                        <div class="alt-features-icon"><span class="fa fa-archive"></span></div>
+                        <h3 class="alt-features-title font-alt">Packages</h3>There are available packages that you can choose for your event.
                     </div>
-                    <div class="alt-features-item">
-                        <div class="alt-features-icon"><span class="icon-mobile"></span></div>
-                        <h3 class="alt-features-title font-alt">Mobile</h3>A wonderful serenity has taken possession of my entire soul like these sweet mornings.
-                    </div>
-                    <div class="alt-features-item">
-                        <div class="alt-features-icon"><span class="icon-linegraph"></span></div>
-                        <h3 class="alt-features-title font-alt">Music</h3>A wonderful serenity has taken possession of my entire soul like these sweet mornings.
-                    </div>
-                    <div class="alt-features-item">
-                        <div class="alt-features-icon"><span class="icon-basket"></span></div>
-                        <h3 class="alt-features-title font-alt">Shop</h3>A wonderful serenity has taken possession of my entire soul like these sweet mornings.
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -314,25 +291,27 @@
             </div>
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
-                    <form id="contactForm" role="form" method="post" action="php/contact.php">
+                    <form action="<?= base_url() ?>main/contact" method="post" role="form">
                         <div class="form-group">
-                            <label class="sr-only" for="name">Name</label>
-                            <input class="form-control" type="text" id="name" name="name" placeholder="Your Name*" required="required" data-validation-required-message="Please enter your name."/>
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group">
-                            <label class="sr-only" for="email">Email</label>
-                            <input class="form-control" type="email" id="email" name="email" placeholder="Your Email*" required="required" data-validation-required-message="Please enter your email address."/>
-                            <p class="help-block text-danger"></p>
+                            <input type="text" name="name" class="form-control <?= !empty(form_error("name")) ? "is-invalid" : ""; ?>" id="name" placeholder="Your Name" value = "<?= set_value("name") ?>"/>
+                            <div class="invalid-feedback"><?= form_error('name') ?></div>
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" rows="7" id="message" name="message" placeholder="Your Message*" required="required" data-validation-required-message="Please enter your message."></textarea>
-                            <p class="help-block text-danger"></p>
+                            <input type="email" class="form-control <?= !empty(form_error("email")) ? "is-invalid" : ""; ?>" name="email" id="email" placeholder="Your Email" value = "<?= set_value("email") ?>"/>
+                            <div class="invalid-feedback"><?= form_error('email') ?></div>
                         </div>
-                        <div class="text-center">
-                            <button class="btn btn-block btn-round btn-d" id="cfsubmit" type="submit">Submit</button>
+                        <div class="form-group">
+                            <input type="text" class="form-control <?= !empty(form_error("subject")) ? "is-invalid" : ""; ?>" name="subject" id="subject" placeholder="Subject" value = "<?= set_value("subject") ?>" />
+                            <div class="invalid-feedback"><?= form_error('subject') ?></div>
                         </div>
+                        <div class="form-group">
+                            <textarea class="form-control <?= !empty(form_error("message")) ? "is-invalid" : ""; ?>" name="message" rows="5" placeholder="Message" value = "<?= set_value("message") ?>"></textarea>
+                            <div class="invalid-feedback"><?= form_error('message') ?></div>
+                        </div>
+                        <button class="btn btn-block btn-round btn-d" id="cfsubmit" type="submit">Submit</button>
+
                     </form>
+
                     <div class="ajax-response font-alt" id="contactFormResponse"></div>
                 </div>
             </div>
