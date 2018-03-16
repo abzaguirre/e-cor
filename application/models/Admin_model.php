@@ -20,14 +20,6 @@ class Admin_model extends CI_Model {
         return ($query->num_rows() > 0 ) ? $query->result() : FALSE;
     }
     
-    public function payment($transaction_id){
-        $table = "transaction";
-        $data = array("transaction_isPaid" => 1);
-        $this->db->where(array("transaction_id" => $transaction_id));
-        $this->db->update($table, $data);
-        return $this->db->affected_rows();
-    }
-    
     public function get_unpaid_ep(){
         $table = "transaction";
         $join = "event_planner";
@@ -53,6 +45,30 @@ class Admin_model extends CI_Model {
 
         $query = $this->db->get($table);
         return ($query->num_rows() > 0 ) ? $query->result() : FALSE;
+    }
+    
+    public function payment($transaction_id){
+        $table = "transaction";
+        $data = array("transaction_isPaid" => 1);
+        $this->db->where(array("transaction_id" => $transaction_id));
+        $this->db->update($table, $data);
+        return $this->db->affected_rows();
+    }
+    
+    public function payment_by_admin($transaction_id){
+        $table = "transaction";
+        $data = array("transaction_isPaidByAdmin" => 1);
+        $this->db->where(array("transaction_id" => $transaction_id));
+        $this->db->update($table, $data);
+        return $this->db->affected_rows();
+    }
+    
+    public function edit_net_income($ep_id, $amount){
+        $table = "event_planner";
+        $this->db->set('event_planner_netIncome', 'event_planner_netIncome + ' . (double) $amount,FALSE);
+        $this->db->where(array("event_planner_id" => $ep_id));
+        $this->db->update($table);
+        return $this->db->affected_rows();
     }
     
     public function singleinsert($table, $data) {
