@@ -43,7 +43,7 @@ class Login extends CI_Controller {
         );
 
         $accountDetailsAdmin = $this->Login_model->getinfo("admin", $dataAdmin);
-        
+
         if (!$accountDetailsClient && !$accountDetailsEventPlanner && !$accountDetailsAdmin) {
             //OOPS no accounts like that!
             $this->session->set_flashdata("err_1", "Invalid Account");
@@ -53,10 +53,13 @@ class Login extends CI_Controller {
             $accountDetailsClient = $accountDetailsClient[0];
             $accountDetailsAdmin = $accountDetailsAdmin[0];
             if ($accountDetailsEventPlanner->event_planner_username == $this->input->post('username')) {
-               
+
                 if ($accountDetailsEventPlanner->event_planner_status == 0) {
                     //OOPS user is blocked by the admin. Please contact the admin.
                     $this->session->set_flashdata("err_2", "Account is blocked. Please contact the administrator to reactivate your account.");
+                    redirect(base_url() . "login");
+                } elseif ($accountDetailsEventPlanner->event_planner_isPaid == 0) {
+                    $this->session->set_flashdata("err_9", "Account is not yet paid. Please pay first to access your account.");
                     redirect(base_url() . "login");
                 } else {
                     if ($accountDetailsEventPlanner->event_planner_isVerified == 0) {
@@ -71,15 +74,13 @@ class Login extends CI_Controller {
                         redirect(base_url() . 'Eventplanner/');
                     }
                 }
-            }
-            else if ($accountDetailsAdmin->admin_username == $this->input->post('username')) {
+            } else if ($accountDetailsAdmin->admin_username == $this->input->post('username')) {
                 $this->session->set_userdata('isloggedin', true);
                 $this->session->set_userdata('userid', $accountDetailsAdmin->admin_id);
                 $this->session->set_userdata('current_user', $accountDetailsAdmin);
                 $this->session->set_userdata('user_access', "Admin");
                 redirect(base_url() . 'Admin/');
-            }
-            else {
+            } else {
                 if ($accountDetailsClient->client_status == 0) {
                     //OOPS user is blocked by the admin. Please contact the admin.
                     $this->session->set_flashdata("err_2", "Account is blocked. Please contact the administrator to reactivate your account.");
