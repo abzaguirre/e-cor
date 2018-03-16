@@ -100,6 +100,7 @@ class Transaction_model extends CI_Model {
         $this->db->where(array("transaction_isAccept" => 1));
         $this->db->where(array("transaction_isPaid" => 1));
         $this->db->where(array("transaction_isDone" => 1));
+        $this->db->where(array("transaction_isPaidByAdmin" => 1));
         $this->db->where(array("transaction_isRejected" => 0));
 
         $query = $this->db->get($table);

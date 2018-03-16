@@ -10,7 +10,7 @@ class Android extends CI_Controller {
         //Nothing to see here.
         
     }
-    
+
     public function validate_user(){
         //Client is loggin in
         $dataClient = array(

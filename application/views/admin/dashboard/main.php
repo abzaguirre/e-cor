@@ -5,6 +5,7 @@ ADMIN DASHBOARD
 <div class="content">
     <div class="container-fluid">
         <?php include_once (APPPATH . "views/show_error/show_error.php"); ?>
+        <?php include_once ("show_error.php"); ?>
         <div class = "row">
             <div class ="col-md-12">
                 <div class ="card">
@@ -40,10 +41,33 @@ ADMIN DASHBOARD
                                                 <td class = "text-center">
                                                     <div class="btn-group" role="group" aria-label="Actions">
                                                         <a href = "<?= base_url() ?>Admin/show_transaction_exec/<?= $transaction->transaction_id ?>" class="btn btn-info">Show Information</a>
-                                                        <a href = "#" class="btn btn-success" data-toggle="modal" data-target="#payment" >Payment</a>
+                                                        <a href = "#" class="btn btn-success" data-toggle="modal" data-target="#payment_<?= $transaction->transaction_id?>" >Payment</a>
                                                     </div>
                                                 </td>
                                             </tr>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="payment_<?= $transaction->transaction_id?>" tabindex="-1" role="dialog" aria-labelledby="paymentLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="paymentLabel">Payment</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Please make sure that the <strong>client</strong> (<?= $transaction->client_firstname." ".$transaction->client_lastname?>) had paid you the right amount before clicking the "Paid" button. 
+                                                            <br>
+                                                            <br>
+                                                            <strong>Cost: </strong>₱ <?= $total_price ?>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <a href = "<?= base_url() ?>Admin/payment_exec/<?= $transaction->transaction_id ?>" class="btn btn-success">Paid</a>              
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>
@@ -56,23 +80,3 @@ ADMIN DASHBOARD
     </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="payment" tabindex="-1" role="dialog" aria-labelledby="paymentLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="paymentLabel">Payment</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Please make sure that the client had paid you the right amount before clicking the "Paid" button. 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <a href = "<?= base_url() ?>Admin/payment_exec/<?= $transaction->transaction_id ?>" class="btn btn-success">Paid</a>              
-            </div>
-        </div>
-    </div>
-</div>
