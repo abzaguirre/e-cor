@@ -15,8 +15,20 @@
             <li class="nav-title">Navigation</li>
 
             <li class="nav-item">
-                <a href="<?= base_url()?>Admin" class="nav-link <?= base_url(uri_string()) == base_url()."Admin" ? "active":"" ;?>">
-                    <i class="icon icon-credit-card"></i> Payment Management
+                <a href="<?= base_url()?>Admin/transactions_payment" class="nav-link <?= base_url(uri_string()) == base_url()."Admin/transactions_payment" ? "active":"" ;?>">
+                    <i class="icon icon-briefcase"></i> Transactions Payment
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a href="<?= base_url()?>Admin/event_planners_payment" class="nav-link <?= base_url(uri_string()) == base_url()."Admin/event_planners_payment" ? "active":"" ;?>">
+                    <i class="icon icon-paypal"></i> Event Planners Payment
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a href="<?= base_url()?>Admin/registration_fee" class="nav-link <?= base_url(uri_string()) == base_url()."Admin/registration_fee" ? "active":"" ;?>">
+                    <i class="icon icon-user-follow"></i> Registration Fee
                 </a>
             </li>
         </ul>
