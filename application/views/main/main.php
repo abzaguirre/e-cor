@@ -291,25 +291,27 @@
             </div>
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
-                    <form id="contactForm" role="form" method="post" action="php/contact.php">
+                    <form action="<?= base_url() ?>main/contact" method="post" role="form">
                         <div class="form-group">
-                            <label class="sr-only" for="name">Name</label>
-                            <input class="form-control" type="text" id="name" name="name" placeholder="Your Name*" required="required" data-validation-required-message="Please enter your name."/>
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="form-group">
-                            <label class="sr-only" for="email">Email</label>
-                            <input class="form-control" type="email" id="email" name="email" placeholder="Your Email*" required="required" data-validation-required-message="Please enter your email address."/>
-                            <p class="help-block text-danger"></p>
+                            <input type="text" name="name" class="form-control <?= !empty(form_error("name")) ? "is-invalid" : ""; ?>" id="name" placeholder="Your Name" value = "<?= set_value("name") ?>"/>
+                            <div class="invalid-feedback"><?= form_error('name') ?></div>
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" rows="7" id="message" name="message" placeholder="Your Message*" required="required" data-validation-required-message="Please enter your message."></textarea>
-                            <p class="help-block text-danger"></p>
+                            <input type="email" class="form-control <?= !empty(form_error("email")) ? "is-invalid" : ""; ?>" name="email" id="email" placeholder="Your Email" value = "<?= set_value("email") ?>"/>
+                            <div class="invalid-feedback"><?= form_error('email') ?></div>
                         </div>
-                        <div class="text-center">
-                            <button class="btn btn-block btn-round btn-d" id="cfsubmit" type="submit">Submit</button>
+                        <div class="form-group">
+                            <input type="text" class="form-control <?= !empty(form_error("subject")) ? "is-invalid" : ""; ?>" name="subject" id="subject" placeholder="Subject" value = "<?= set_value("subject") ?>" />
+                            <div class="invalid-feedback"><?= form_error('subject') ?></div>
                         </div>
+                        <div class="form-group">
+                            <textarea class="form-control <?= !empty(form_error("message")) ? "is-invalid" : ""; ?>" name="message" rows="5" placeholder="Message" value = "<?= set_value("message") ?>"></textarea>
+                            <div class="invalid-feedback"><?= form_error('message') ?></div>
+                        </div>
+                        <button class="btn btn-block btn-round btn-d" id="cfsubmit" type="submit">Submit</button>
+
                     </form>
+
                     <div class="ajax-response font-alt" id="contactFormResponse"></div>
                 </div>
             </div>
