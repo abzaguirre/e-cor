@@ -199,6 +199,7 @@ class Register extends CI_Controller {
                 'event_planner_firstname' => $this->input->post('firstname'),
                 'event_planner_bday' => strtotime($this->input->post('bday')),
                 'event_planner_status' => 1,
+                'event_planner_isPaid' => 0,
                 'event_planner_sex' => $this->input->post('gender'),
                 'event_planner_picture' => $imagePath,
                 'event_planner_address' => $this->input->post('address'),
@@ -251,12 +252,17 @@ class Register extends CI_Controller {
             "title" => "Welcome to new user!"
         );
         $this->load->view("register/includes/header", $data);
-        $this->load->view("register/is_verified");
+        $this->load->view("register/Eventplanner_isverified");
         $this->load->view("register/includes/footerVerify");
     }
 
     public function success() {
         $this->session->set_flashdata("err_6", "You are successfully registered.");
+        redirect(base_url() . "login");
+    }
+
+    public function successEp() {
+        $this->session->set_flashdata("err_6", "Your account successfully verified.");
         redirect(base_url() . "login");
     }
 
