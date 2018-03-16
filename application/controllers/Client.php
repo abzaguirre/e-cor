@@ -28,6 +28,7 @@ class Client extends CI_Controller {
         $current_client = $this->Client_model->get_client(array("client_id" => $this->session->userdata("userid")))[0];
         $data = array(
             //-- DUMMY DATA --
+            'current_client' => $current_client,
             //-- NAV INFO --
             "title" => "E-Cor | $current_client->client_username",
             "current_ep" => $current_client,

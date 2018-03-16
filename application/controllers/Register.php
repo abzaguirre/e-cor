@@ -55,6 +55,16 @@ class Register extends CI_Controller {
         $this->load->view("register/includes/footer");
     }
 
+    public function terms() {
+        $data = array(
+            'title' => 'E-Cor | Terms & Conditions',
+            'wholeUrl' => base_url(uri_string()),
+        );
+        $this->load->view("register/includes/header", $data);
+        $this->load->view("register/terms");
+        $this->load->view("register/includes/footer");
+    }
+
     public function register_submit() {
         $this->form_validation->set_rules("username", "Username", "required|min_length[5]|is_unique[client.client_username]");
         $this->form_validation->set_rules("password", "Password", "required|matches[conpassword]|min_length[8]");

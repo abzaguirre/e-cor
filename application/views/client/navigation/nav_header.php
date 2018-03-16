@@ -4,7 +4,7 @@
         <i class="fa fa-bars"></i>
     </a>
 
-    <a class="navbar-brand text-center" href="<?= base_url() ?>eventplanner">
+    <a class="navbar-brand text-center" href="<?= base_url() ?>Client">
         <img  src="<?= base_url() ?>/images/logo/ecor-word-logo.png" alt="logo" height = "25">
     </a>
 

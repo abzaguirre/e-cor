@@ -14,11 +14,11 @@ class Eventplanner extends CI_Controller {
                 //CLIENT
                 $this->session->set_flashdata("err_5", "You are currently logged in as " . $current_user->client_firstname . " " . $current_user->client_lastname);
                 redirect(base_url() . "Client");
-            }else if($this->session->userdata("user_access") == "Admin"){
+            } else if ($this->session->userdata("user_access") == "Admin") {
                 //ADMIN
                 $this->session->set_flashdata("err_5", "You are currently logged in as " . $current_user->admin_firstname . " " . $current_user->admin_lastname);
                 redirect(base_url() . "Admin");
-            }else if ($this->session->userdata("user_access") == "Event Planner") {
+            } else if ($this->session->userdata("user_access") == "Event Planner") {
                 //EVENT PLANNER
             }
         }
@@ -44,20 +44,78 @@ class Eventplanner extends CI_Controller {
     }
 
     public function index() {
+        $allTransactions = $this->Eventplanner_model->fetch("transaction", array("event_planner_id" => $this->session->userdata("userid")));
+        $januaryCount = 0;
+        $februaryCount = 0;
+        $marchCount = 0;
+        $aprilCount = 0;
+        $mayCount = 0;
+        $juneCount = 0;
+        $julyCount = 0;
+        $augustCount = 0;
+        $septemberCount = 0;
+        $octoberCount = 0;
+        $novemberCount = 0;
+        $decemberCount = 0;
+        if (!empty($allTransactions)) {
+            foreach ($allTransactions as $trans) {
+                $month = date("M", $trans->transaction_added_at);
+                if ($month == 'Jan') {
+                    $januaryCount = $januaryCount + 1;
+                } else if ($month == 'Feb') {
+                    $februaryCount = $februaryCount + 1;
+                } else if ($month == 'Mar') {
+                    $marchCount = $marchCount + 1;
+                } else if ($month == 'Apr') {
+                    $aprilCount = $aprilCount + 1;
+                } else if ($month == 'May') {
+                    $mayCount = $mayCount + 1;
+                } else if ($month == 'Jun') {
+                    $juneCount = $juneCount + 1;
+                } else if ($month == 'Jul') {
+                    $julyCount = $julyCount + 1;
+                } else if ($month == 'Aug') {
+                    $augustCount = $augustCount + 1;
+                } else if ($month == 'Sep') {
+                    $septemberCount = $septemberCount + 1;
+                } else if ($month == 'Oct') {
+                    $octoberCount = $octoberCount + 1;
+                } else if ($month == 'Nov') {
+                    $novemberCount = $novemberCount + 1;
+                } else if ($month == 'Dec') {
+                    $decemberCount = $decemberCount + 1;
+                }
+            }
+        }
         $specialty = $this->Eventplanner_model->fetch("event_specialty", array("event_planner_id" => $this->session->userdata("userid")));
 //        echo "<pre>";
 //        print_r($specialty);
 //        echo "</pre>";
 //        die;
+        $transactions = $this->Eventplanner_model->count_transactions(array("event_planner_id" => $this->session->userdata("userid")));
+
         $packages_count = $this->Eventplanner_model->count_packages($this->session->userdata("userid"));
         $current_ep = $this->Eventplanner_model->get_ep(array("event_planner_id" => $this->session->userdata("userid")))[0];
         $data = array(
             //-- DUMMY DATA --
-            //-- NAV INFO --
-            "title" => $current_ep->event_planner_username,
             "packages_count" => $packages_count,
             "specialty" => $specialty,
             "current_ep" => $current_ep,
+            "transactions" => $transactions,
+            'januaryCount' => $januaryCount,
+            'februaryCount' => $februaryCount,
+            'marchCount' => $marchCount,
+            'aprilCount' => $aprilCount,
+            'mayCount' => $mayCount,
+            'juneCount' => $juneCount,
+            'julyCount' => $julyCount,
+            'augustCount' => $augustCount,
+            'septemberCount' => $septemberCount,
+            'octoberCount' => $octoberCount,
+            'novemberCount' => $novemberCount,
+            'decemberCount' => $decemberCount,
+            //-- NAV INFO --
+            "title" => $current_ep->event_planner_username,
             "ep_username" => "$current_ep->event_planner_username",
             "ep_picture" => "$current_ep->event_planner_picture"
         );
@@ -303,15 +361,13 @@ class Eventplanner extends CI_Controller {
             }
         }
     }
-    
-    public function pending_request_exec(){
-        redirect(base_url()."pending_request");
+
+    public function pending_request_exec() {
+        redirect(base_url() . "pending_request");
     }
-    
-    public function schedules_exec(){
-        redirect(base_url()."schedules");
+
+    public function schedules_exec() {
+        redirect(base_url() . "schedules");
     }
-    
-   
 
 }

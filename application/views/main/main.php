@@ -21,26 +21,14 @@
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
                     <h2 class="module-title font-alt">Our Services</h2>
-                    <div class="module-subtitle font-serif">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et nisl lorem. Duis eu nibh vel velit lobortis gravida vel at purus. Etiam lacus dui, molestie sed eleifend in, luctus nec quam.</div>
+                    <div class="module-subtitle font-serif">Below are the listed services of the system, E-Cor.</div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6 col-md-3 col-lg-3">
                     <div class="alt-features-item">
-                        <div class="alt-features-icon"><span class="icon-calendar"></span></div>
-                        <h3 class="alt-features-title font-alt">Events</h3>A wonderful serenity has taken possession of my entire soul like these sweet mornings.
-                    </div>
-                    <div class="alt-features-item">
-                        <div class="alt-features-icon"><span class="icon-tools-2"></span></div>
-                        <h3 class="alt-features-title font-alt">Development</h3>A wonderful serenity has taken possession of my entire soul like these sweet mornings.
-                    </div>
-                    <div class="alt-features-item">
-                        <div class="alt-features-icon"><span class="icon-target"></span></div>
-                        <h3 class="alt-features-title font-alt">Marketing</h3>A wonderful serenity has taken possession of my entire soul like these sweet mornings.
-                    </div>
-                    <div class="alt-features-item">
-                        <div class="alt-features-icon"><span class="icon-tools"></span></div>
-                        <h3 class="alt-features-title font-alt">Design</h3>A wonderful serenity has taken possession of my entire soul like these sweet mornings.
+                        <div class="alt-features-icon"><span class="fa fa-user-circle-o"></span></div>
+                        <h3 class="alt-features-title font-alt">Choose Event Planner</h3>You can choose available event planner that will organize your event.
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6 hidden-xs hidden-sm">
@@ -48,21 +36,10 @@
                 </div>
                 <div class="col-sm-6 col-md-3 col-lg-3">
                     <div class="alt-features-item">
-                        <div class="alt-features-icon"><span class="icon-camera"></span></div>
-                        <h3 class="alt-features-title font-alt">Photography</h3>A wonderful serenity has taken possession of my entire soul like these sweet mornings.
+                        <div class="alt-features-icon"><span class="fa fa-archive"></span></div>
+                        <h3 class="alt-features-title font-alt">Packages</h3>There are available packages that you can choose for your event.
                     </div>
-                    <div class="alt-features-item">
-                        <div class="alt-features-icon"><span class="icon-mobile"></span></div>
-                        <h3 class="alt-features-title font-alt">Mobile</h3>A wonderful serenity has taken possession of my entire soul like these sweet mornings.
-                    </div>
-                    <div class="alt-features-item">
-                        <div class="alt-features-icon"><span class="icon-linegraph"></span></div>
-                        <h3 class="alt-features-title font-alt">Music</h3>A wonderful serenity has taken possession of my entire soul like these sweet mornings.
-                    </div>
-                    <div class="alt-features-item">
-                        <div class="alt-features-icon"><span class="icon-basket"></span></div>
-                        <h3 class="alt-features-title font-alt">Shop</h3>A wonderful serenity has taken possession of my entire soul like these sweet mornings.
-                    </div>
+
                 </div>
             </div>
         </div>

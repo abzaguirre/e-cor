@@ -18,14 +18,14 @@ class Transaction_model extends CI_Model {
         $this->db->join($join3, $on3, "left outer");
         $this->db->join($join4, $on4, "left outer");
 
-        if(!empty($where)){
-            $this->db->where(array("transaction_id" => $transaction_id));   
+        if (!empty($where)) {
+            $this->db->where(array("transaction_id" => $transaction_id));
         }
-        
+
         $query = $this->db->get($table);
         return ($query->num_rows() > 0 ) ? $query->result() : FALSE;
     }
-    
+
     public function get_transactions_active($event_planner_id) {
         $table = "transaction";
         $join = "event_planner";
@@ -68,7 +68,7 @@ class Transaction_model extends CI_Model {
         $this->db->join($join2, $on2, "left outer");
         $this->db->join($join3, $on3, "left outer");
         $this->db->join($join4, $on4, "left outer");
-        
+
         $this->db->where(array("transaction_isActive" => 1));
         $this->db->where(array("transaction_isAccept" => 1));
         $this->db->where(array("transaction_isPaid" => 0));
@@ -78,7 +78,7 @@ class Transaction_model extends CI_Model {
         $query = $this->db->get($table);
         return ($query->num_rows() > 0 ) ? $query->result() : FALSE;
     }
-    
+
     public function get_transactions_inactive($event_planner_id) {
         $table = "transaction";
         $join = "event_planner";
@@ -224,7 +224,7 @@ class Transaction_model extends CI_Model {
         $query = $this->db->get($table);
         return ($query->num_rows() > 0 ) ? $query->result() : FALSE;
     }
-    
+
     public function get_accepted_transaction($transaction_id) {
         $table = "transaction";
         $join = "event_planner";
@@ -241,11 +241,12 @@ class Transaction_model extends CI_Model {
         $this->db->join($join3, $on3, "left outer");
         $this->db->join($join4, $on4, "left outer");
 
+        $this->db->where(array("transaction.event_planner_id" => $transaction_id));
         $this->db->where(array("transaction_isActive" => 1));
         $this->db->where(array("transaction_isAccept" => 1));
         $this->db->where(array("transaction_isDone" => 0));
         $this->db->where(array("transaction_isRejected" => 0));
-        
+
         $query = $this->db->get($table);
         return ($query->num_rows() > 0 ) ? $query->result() : FALSE;
     }
