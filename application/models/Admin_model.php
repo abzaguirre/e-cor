@@ -20,6 +20,14 @@ class Admin_model extends CI_Model {
         return ($query->num_rows() > 0 ) ? $query->result() : FALSE;
     }
     
+    public function get_newly_registered_ep() {
+        $table = "event_planner";
+        
+        $this->db->where(array("event_planner_isPaid" => 0));
+        $query = $this->db->get($table);
+        return ($query->num_rows() > 0 ) ? $query->result() : FALSE;
+    }
+    
     public function get_unpaid_ep(){
         $table = "transaction";
         $join = "event_planner";
@@ -59,6 +67,14 @@ class Admin_model extends CI_Model {
         $table = "transaction";
         $data = array("transaction_isPaidByAdmin" => 1);
         $this->db->where(array("transaction_id" => $transaction_id));
+        $this->db->update($table, $data);
+        return $this->db->affected_rows();
+    }
+    
+    public function registration_payment($event_planner_id){
+        $table = "event_planner";
+        $data = array("event_planner_isPaid" => 1);
+        $this->db->where(array("event_planner_id" => $event_planner_id));
         $this->db->update($table, $data);
         return $this->db->affected_rows();
     }
