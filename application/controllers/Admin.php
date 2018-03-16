@@ -25,6 +25,10 @@ class Admin extends CI_Controller {
     }
 
     public function index() {
+        redirect(base_url()."Admin/transactions_payment");
+    }
+    
+    public function transactions_payment(){
         $current_admin = $this->Admin_model->get_admin(array("admin_id" => $this->session->userdata("userid")))[0];
         $unpaid_transactions = $this->Transaction_model->get_unpaid_transactions();
         
@@ -41,6 +45,26 @@ class Admin extends CI_Controller {
         $this->load->view("admin/navigation/nav_header");
         $this->load->view("admin/navigation/nav_side");
         $this->load->view("admin/dashboard/main");
+        $this->load->view("admin/includes/footer");
+    }
+    
+    public function event_planners_payment(){
+        $current_admin = $this->Admin_model->get_admin(array("admin_id" => $this->session->userdata("userid")))[0];
+        $unpaid_ep = $this->Admin_model->get_unpaid_ep();
+        
+        $data = array(
+            "unpaid_ep" => $unpaid_ep,
+            //-- NAV INFO --
+            "title" => "E-Cor | $current_admin->admin_username",
+            "current_ep" => $current_admin,
+            "admin_username" => "$current_admin->admin_username",
+            "admin_picture" => "$current_admin->admin_picture"
+        );
+
+        $this->load->view("admin/includes/header", $data);
+        $this->load->view("admin/navigation/nav_header");
+        $this->load->view("admin/navigation/nav_side");
+        $this->load->view("admin/event_planner_payment/main");
         $this->load->view("admin/includes/footer");
     }
     
@@ -79,6 +103,7 @@ class Admin extends CI_Controller {
         $transaction_id = $this->session->userdata("transaction_id");
         $this->Admin_model->payment($transaction_id);
         $this->session->set_flashdata("show_flash_success", "Transaction is now paid.");
+        redirect(base_url()."Admin/transactions_payment");
     }
     
 }
