@@ -69,10 +69,10 @@ class Admin extends CI_Controller {
     
     public function registration_fee(){
         $current_admin = $this->Admin_model->get_admin(array("admin_id" => $this->session->userdata("userid")))[0];
-        $unpaid_ep = $this->Admin_model->get_unpaid_ep();
+        $newly_registered_ep = $this->Admin_model->get_newly_registered_ep();
         
         $data = array(
-            "unpaid_ep" => $unpaid_ep,
+            "newly_registered_ep" => $newly_registered_ep,
             //-- NAV INFO --
             "title" => "E-Cor | $current_admin->admin_username",
             "current_ep" => $current_admin,
@@ -138,6 +138,18 @@ class Admin extends CI_Controller {
         $this->Admin_model->edit_net_income($this->session->userdata("userid"), $amount);
         $this->session->set_flashdata("show_flash_success", "Transaction is now paid.");
         redirect(base_url()."Admin/transactions_payment");
+    }
+    
+    public function registration_payment_exec(){
+        $this->session->set_userdata("event_planner_id",$this->uri->segment(3));
+        redirect(base_url()."admin/registration_payment");
+    }
+    
+    public function registration_payment(){
+        $event_planner_id = $this->session->userdata("event_planner_id");
+        $this->Admin_model->registration_payment($event_planner_id);
+        $this->session->set_flashdata("show_flash_success", "Transaction is now paid.");
+        redirect(base_url()."Admin/registration_fee");
     }
     
 }
